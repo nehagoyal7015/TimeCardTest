@@ -1,0 +1,201 @@
+<div class="bg-white p20 h-vh95">
+  <h1 class="title">Holiday <h3 class="f-right" *ngIf="accessP != 1">( Year - 2022 )</h3> </h1>
+  <div fxLayout="row" fxLayoutAlign="" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayout.xs="column">
+    <div fxFlex="100">
+      <div fxLayout="row">
+        <div class="w-100">
+        <div class="f-left"> 
+          <mat-form-field *ngIf="accessP == 1" appearance="fill" class="inputBox p-Bottom0">
+            <mat-label>Year</mat-label> 
+            <mat-select [(ngModel)]="defaultYr" (ngModelChange)='getHolidayList($event)' (click)="selectedRowIndex = -1">
+              <mat-option *ngFor="let yer of yearList" [value]="yer.value">
+                {{yer.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="d-flex f-right">
+          <div class="d-flex m-Right5"><button mat-flat-button color="accent" *ngIf="accessP == 1" (click)="openDialog(addEmpPopup)">Add</button></div>
+          <div class=" m-Right5"><button mat-flat-button color="primary" *ngIf="selectedRowIndex != -1" (click)="openDialog(editEmpPopup)">Edit</button></div>
+          <div class="d-flex"><button mat-flat-button color="primary" *ngIf="selectedRowIndex != -1" (click)="deleteHoliday()">Delete</button></div>
+
+        </div>
+      </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="none start" class="m-Top5">
+        <div fxFlex="100">
+          <div class="over-scroll-table">
+          <table mat-table [dataSource]="holidayList" class="mat-elevation-z8 w-100 m-Top10">
+
+            <ng-container matColumnDef="holidayDate">
+              <th mat-header-cell *matHeaderCellDef width ="20%"> Date </th>
+              <td mat-cell *matCellDef="let element"> {{element.holidayDate}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="holidayReason">
+              <th mat-header-cell *matHeaderCellDef width ="20%"> Event </th>
+              <td mat-cell *matCellDef="let element"> {{element.holidayReason}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="holidayType">
+              <th mat-header-cell *matHeaderCellDef width ="20%"> Type </th>
+              <td mat-cell *matCellDef="let element"> {{element.holidayType}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Opting" >
+                    <th mat-header-cell *matHeaderCellDef width ="10%"> Opting </th>
+                    <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()" class="opting-box"> 
+                      <label class="switch" *ngIf="element.holidayType == 'Floating Holiday' && accessP != 1">
+                      <input type="checkbox" [checked]="element.isOpting" [disabled]="dateCheck(element.holidayDate)" (click)="optNCancel(element);datePassDialogue(element.isOpting, confirmDatePassedDialogue)" >
+                      <span class="slider round"></span>
+                    </label>
+
+                     <span class="holiday-opting-floating" *ngIf="element.isFloating == true && accessP == 1" 
+                     (click)="getEmpOptList(element.holidayId); openDialog(listOptHoliday)" 
+                     style="margin-bottom: 0px;" [matBadge]="element.optByAnyone"  
+                     matBadgeSize="large" matBadgeColor="warn"></span>
+                    </td>
+                    
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr [ngClass]="{'highlight': selectedRowIndex == row.holidayId}"
+            (click)="highlight(row.holidayId); holidayDate = row.holidayDate; holidayEvent = row.holidayReason"  mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #addEmpPopup>
+  <button mat-button class="close-icon dialog-close-icon" [mat-dialog-close]="true">
+    <mat-icon>close</mat-icon>
+</button>
+
+
+  <h1 mat-dialog-title>New Holiday</h1>
+  <div mat-dialog-content>
+    <form #usersForm="ngForm">
+
+      <mat-form-field appearance="fill" class="inputBox m-Top10">
+        <mat-label>Date</mat-label>
+        <input matInput [(ngModel)]="holidayDate" name="holidayDate" [matDatepicker]="picker" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width inputBox m-Top15" appearance="fill">
+        <mat-label>Event</mat-label>
+        <input matInput [(ngModel)]="holidayReason" name="holidayReason" placeholder="Event" value="0" required>
+      </mat-form-field>
+
+      <mat-checkbox [(ngModel)]="isFloating" name="isFloating">Floating Type</mat-checkbox>
+
+
+
+    </form>
+  </div>
+  <div mat-dialog-actions class="f-right">
+    <button mat-flat-button color="warn" mat-dialog-close >Close</button>
+    <button mat-flat-button color="accent" type="submit" matTooltip="Submit"
+    [disabled]="!usersForm.valid" (click)="addHoliday(usersForm.value); usersForm.reset()">Save</button>
+
+  </div>
+
+
+
+</ng-template>
+<ng-template #listOptHoliday>
+  <button mat-button class="close-icon dialog-close-icon" [mat-dialog-close]="true">
+    <mat-icon>close</mat-icon>
+</button>
+
+
+  <table mat-table [dataSource]="optFlotEmpList" class="mat-elevation-z0 w-100 m-Top10">
+
+    <ng-container matColumnDef="EmpId">
+      <th mat-header-cell *matHeaderCellDef width ="20%"> EmpId </th>
+      <td mat-cell *matCellDef="let element" >  {{element.empId}}  </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef width ="20%"> Name </th>
+      <td mat-cell *matCellDef="let element">  {{element.userName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Voided" >
+      <th mat-header-cell *matHeaderCellDef width ="20%" style="text-align: center;"> Voided </th>
+      <td mat-cell *matCellDef="let element" style="text-align: center;">  {{element.isVoided}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="OptEmpTable"></tr>
+            <tr [ngClass]="{'highlight': empSelectUserId == row.userId}"
+            (click)="empSelect(row.userId); "  mat-row *matRowDef="let row; columns: OptEmpTable;"></tr>
+  </table>
+
+  <button mat-flat-button color="accent" class="f-right m-Top10" mat-dialog-close>OK</button>
+
+
+</ng-template>
+
+
+
+
+<ng-template #editEmpPopup>
+  <button mat-button class="close-icon dialog-close-icon" [mat-dialog-close]="true">
+    <mat-icon>close</mat-icon>
+</button>
+
+
+  <h1 mat-dialog-title>Edit Holiday</h1>
+  <div mat-dialog-content>
+    <form #usersForm="ngForm">
+      <mat-form-field appearance="fill" class="inputBox m-Top10">
+        <mat-label>Date</mat-label>
+        <input matInput [(ngModel)]="holidayId" name="holidayId" [(ngModel)]="holidayDate" placeholder="{{holidayDate}}"  name="holidayDate" [matDatepicker]="picker" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width inputBox m-Top15" appearance="fill">
+        <mat-label>Event</mat-label>
+        <input matInput [(ngModel)]="holidayEvent" name="holidayReason" placeholder="{{holidayEvent}}" value="0" required>
+      </mat-form-field>
+
+      <mat-checkbox [(ngModel)]="isFloating" name="isFloating">Floating Type</mat-checkbox>
+
+
+
+    </form>
+  </div>
+  <div mat-dialog-actions class="f-right">
+    <button mat-flat-button color="warn" mat-dialog-close>Close</button>
+    <button mat-flat-button color="accent" type="submit" matTooltip="Submit"
+    [disabled]="!usersForm.valid" (click)="editHoliday(usersForm.value)">Save</button>
+
+  </div>
+</ng-template>
+
+
+<ng-template #confirmDatePassedDialogue>
+  <button mat-button class="close-icon dialog-close-icon" [mat-dialog-close]="true">
+    <mat-icon>close</mat-icon>
+</button>
+
+
+  <h2>Once date passed employee can not change holiday option...</h2>
+
+  <div mat-dialog-actions class="f-right">
+    <button mat-flat-button color="warn" mat-dialog-close (click)="datePassConfirm = false">Close</button>
+    <button mat-flat-button color="accent" type="submit" matTooltip="Submit" (click)="save()">Save</button>
+
+  </div>
+</ng-template>
+
+
+
+
+
+  

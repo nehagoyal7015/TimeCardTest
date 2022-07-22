@@ -1,0 +1,47 @@
+.admin-nav {
+    text-align: center;
+    font-size: 30px;
+    color: #3d3e3f;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 45px;
+    width: 100%;
+    text-align: left;
+    mat-icon {
+        font-size: 45px;
+        float: left;
+        width: 45px;
+        height: 45px;
+        margin-right: 15px;
+    }
+    ul {
+        margin: 0 0 0 50px;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        li {
+            margin-left: 15px;
+            font-size: 16px;
+            position: relative;
+            padding-left: 15px;
+            cursor: pointer; 
+            &::after {
+                position: absolute;
+                width: 12px;
+                height: 12px;
+                content: "";
+                background: #222f3c;
+                border-radius: 50%;
+                left: 0;
+                top: 37%;
+            }
+        }
+    }
+}
+.m-h600 {
+    min-height: 600px;
+}
+.cardWrap {
+    width: 100%;
+}

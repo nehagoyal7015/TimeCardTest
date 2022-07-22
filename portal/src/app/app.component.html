@@ -1,0 +1,5 @@
+<router-outlet></router-outlet>
+<mat-spinner class="spinner-box" *ngIf="spinnerIcon"></mat-spinner>
+<div class="overlay-box" *ngIf="spinnerIcon"></div> 
+<div *ngIf="message"  [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">{{message}} <mat-icon (click)="closeAlert">close</mat-icon></div>
+

@@ -1,0 +1,138 @@
+
+<h2>Employee Manage</h2>
+<app-ng-dynamic-breadcrumb [bgColor]="'rgb(34 47 60 / 10%)'" [fontSize]="'13px'" [fontColor]="'#0275d8'" [lastLinkColor]="'#000'" [symbol]="' / '"></app-ng-dynamic-breadcrumb>
+<div class="bg-white p20">
+  <div class="w-100 m-Bottom10 align-right">
+    <button mat-flat-button color="accent" class="m-Right10 c-white" [disabled]="!employeeForm.valid"
+      (click)="AddEmp(); employeeForm.reset()">Save</button>
+    <button mat-flat-button color="warn" (click)="cancelEmp()">Cancel</button>
+  </div>
+  <form #employeeForm="ngForm">
+    <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="21px" fxLayoutGap.lt-md="6px" fxLayout.xs="column">
+      <div class="cardWrap m-Bottom20" fxFlex="32">
+        <!-- <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>FirstName</mat-label>
+          <input matInput [(ngModel)]="EmployeeForm.firstName" name="firstName" autocomplete="off">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>LastName</mat-label>
+          <input matInput [(ngModel)]="EmployeeForm.lastName" name="lastName" autocomplete="off">
+        </mat-form-field>  -->
+        <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>Employee Name</mat-label>
+          <!-- <input [(ngModel)]="domainId" style="display: none;"> -->
+          <input matInput [(ngModel)]="EmployeeForm.userName" name="userName" autocomplete="off" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>Email</mat-label>
+          <input matInput [(ngModel)]="EmployeeForm.userEmail" name="userEmail"  required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" autocomplete="off">
+        </mat-form-field>
+        <!-- <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>Password</mat-label>
+          <input [type]="showPassword ? 'text' : 'password'" matInput [(ngModel)]="EmployeeForm.password" name="password"  autocomplete="off"   placeholder="******">
+          <mat-icon matSuffix style="cursor:pointer;" (click)="togglePasswordVisibility()" > {{showPassword?'visibility_off':'visibility'}}</mat-icon>
+        </mat-form-field> -->
+        <!-- <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>Date Of Birth</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="EmployeeForm.dateOfBirth" name="dateOfBirth" autocomplete="off">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field> -->
+        <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>Joining Date</mat-label>
+          <input matInput [matDatepicker]="picker1" [(ngModel)]="EmployeeForm.joiningDate" name="joiningDate" autocomplete="off">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+       
+        <!-- <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>Desgination</mat-label>
+          <input matInput [(ngModel)]="EmployeeForm.desgination" name="desgination" autocomplete="off">
+        </mat-form-field> -->
+       
+        <!-- <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>SSoID</mat-label>
+          <input matInput [(ngModel)]="EmployeeForm.ssoId" name="motherName" autocomplete="off">
+        </mat-form-field> -->
+      </div>
+      <div class="cardWrap m-Bottom20" fxFlex="32">
+        <!-- <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>Father Name</mat-label>
+          <input matInput [(ngModel)]="EmployeeForm.fatherName" name="fatherName" autocomplete="off">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>Mother</mat-label>
+          <input matInput [(ngModel)]="EmployeeForm.motherName" name="motherName" autocomplete="off">
+        </mat-form-field> -->
+        <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>EmployeeId</mat-label>
+          <input matInput [(ngModel)]="EmployeeForm.empId" name="empId" autocomplete="off">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>Phone</mat-label>
+          <input matInput [(ngModel)]="EmployeeForm.phoneNumber" name="phoneNumber" autocomplete="off">
+        </mat-form-field>
+        <!-- <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>Phone 2</mat-label>
+          <input matInput [(ngModel)]="EmployeeForm.alternateNumber" name="alternateNumber" autocomplete="off">
+        </mat-form-field> -->
+        <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>Personal Email</mat-label>
+          <input matInput [(ngModel)]="EmployeeForm.personalEmail" name="personalEmail" autocomplete="off">
+        </mat-form-field>
+  
+        <!-- <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>Profile Pic</mat-label>
+          <input type="file" accept=".jpg,.png,.gif" (change)="onFileChange($event)" 
+              value="" name="profile" matInput
+            autocomplete="off">
+        </mat-form-field> -->
+        <!-- <mat-form-field class="example-chip-list w-100 inputBox" appearance="fill">
+          <mat-label>Skills</mat-label>
+          <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip *ngFor="let skil of EmployeeForm.skillList" (removed)="remove(skil)">
+              {{skil}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input placeholder="New Task..." 
+              [matChipInputFor]="chipList"
+              (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+        </mat-form-field> -->
+      </div>
+      <div class="cardWrap m-Bottom20" fxFlex="32">
+        <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>SkypeId</mat-label>
+          <input matInput [(ngModel)]="EmployeeForm.skypeId" name="skypeId" autocomplete="off">
+        </mat-form-field>
+        <mat-form-field class="example-full-width inputBox m-Top10" appearance="fill">
+          <mat-label>Address</mat-label>
+          <textarea matInput [(ngModel)]="EmployeeForm.address1" name="address1" placeholder="0" rows="4"> </textarea>
+        </mat-form-field>
+        <!-- <mat-form-field class="example-full-width inputBox m-Top10" appearance="fill">
+          <mat-label>Address2</mat-label>
+          <textarea matInput [(ngModel)]="EmployeeForm.address2" name="address2" placeholder="0" rows="4"> </textarea>
+        </mat-form-field> -->
+
+        <!-- <strong class="m-Top10 m-Bottom20 d-block" > Marital Status 
+          <mat-slide-toggle class="f-right" [(ngModel)]="EmployeeForm.isMaritalStatus" name="isMaritalStatus"></mat-slide-toggle> </strong>
+        <mat-form-field appearance="fill" class="w-100 inputBox m-Top10">
+          <mat-label>Spouse Name</mat-label>
+          <input matInput [(ngModel)]="EmployeeForm.spouseName" name="spouseName" autocomplete="off">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>Spouse Phone</mat-label>
+          <input matInput [(ngModel)]="EmployeeForm.spousePhone" name="spousePhone" autocomplete="off">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>Spouse Email</mat-label>
+          <input matInput [(ngModel)]="EmployeeForm.spouseEmail" name="spouseEmail" autocomplete="off">
+        </mat-form-field> -->
+
+      </div>
+    </div>
+  </form>
+</div>

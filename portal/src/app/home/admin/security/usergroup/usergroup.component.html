@@ -1,0 +1,75 @@
+<div class="project-setup-page">
+    <h2>User Group</h2>
+    <app-ng-dynamic-breadcrumb [bgColor]="'rgb(34 47 60 / 10%)'" [fontSize]="'13px'" [fontColor]="'#0275d8'"
+        [lastLinkColor]="'#000'" [symbol]="' / '"></app-ng-dynamic-breadcrumb>
+    <div class="bg-white p20">
+        <form #addGroupForm="ngForm">
+        <div fxLayout="row wrap" fxLayoutGap="11px" fxLayoutGap.lt-md="6px" fxLayout.xs="column" class="">
+            
+            <div class="cardWrap m-Top10" fxFlex="24" fxFlex.lt-md="31">
+                <mat-form-field appearance="fill" class="inputBox w-100">
+                    <mat-label>Group Name</mat-label>
+                    <input matInput name="groupName" [(ngModel)]="addGroup.groupName" autocomplete="off" required>
+                </mat-form-field>
+            </div>
+           
+            <div class="cardWrap m-Top10" fxFlex="24" fxFlex.lt-md="31">
+                <mat-form-field appearance="fill" class="inputBox w-100">
+                    <mat-label>Group Description</mat-label>
+                    <input matInput name="groupDescription" [(ngModel)]="addGroup.shortDescription" autocomplete="off">
+                </mat-form-field>
+            </div>
+
+            <div class="cardWrap m-Top10" fxFlex="24" fxFlex.lt-md="31">
+                <button mat-flat-button color="primary" [disabled]="!addGroupForm.valid" (click)="addGroupList()" class="c-white m-Top10 m-Right10">Add
+                    Group</button>
+                
+            </div>
+        
+        </div>
+    </form>
+        <div class="m-Top30">
+            <div class="example-container over-scroll-table mat-elevation-z8 m-Top10">
+                <!-- {{groupTableList | json}} -->
+                <table class="w-100" mat-table [dataSource]="groupTableList" matSort> 
+              
+                  
+                  <ng-container matColumnDef="groupName"> 
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Group </th>
+                    <td mat-cell *matCellDef="let element"> {{element.groupName}} </td>
+                  </ng-container>
+                  
+                  <ng-container matColumnDef="shortDescription">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Discription </th>
+                    <td mat-cell *matCellDef="let element"> {{element.shortDescription}} </td>
+                  </ng-container>
+                  
+                  
+                
+                  <ng-container matColumnDef="domainId">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-flat-button color="primary" (click)="AssignEmp($event, element)"
+                            class="c-white assignBtn">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="groupId">
+                    <th mat-header-cell *matHeaderCellDef width ="2%"> </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-flat-button color="warn" (click)="deleteGroupBtn(element.groupId)"
+                            class="c-white assignBtn">
+                            <mat-icon>delete</mat-icon> 
+                        </button>
+                    </td>
+                </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[7, 14, 25, 100]" aria-label="Select page of users"></mat-paginator>
+              </div>
+            
+        </div>
+    </div>
+</div>

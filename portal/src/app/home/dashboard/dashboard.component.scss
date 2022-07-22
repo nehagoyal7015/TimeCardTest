@@ -1,0 +1,212 @@
+
+@import "./../../../assets/scss/variables";
+@import "./../../../assets/scss/mixins.scss";
+
+.statusDetails {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    h2 {
+        width: 100%;
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: end;
+        @include respond-to(medium-screens) { 
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        @include respond-to(responsiveMax767) { 
+            font-size: 1.3rem;
+        }
+    }
+    .hr-sts {
+        width: 100%;
+    }
+    .hr-sts {
+        display: flex;
+        @include respond-to(medium-screens) { 
+            white-space: nowrap;
+            font-size: 12px;
+        }
+        .lav-sts {
+            display: flex;
+            .card-box {
+                width: 20px;
+                height: 20px;
+                display: block;
+                @include respond-to(medium-screens) { 
+                    width: 15px;
+                    height: 15px;
+                }
+            }
+        }
+        
+    }
+}
+
+
+.btn-time {
+    line-height: 35px;
+    font-size: 18px;
+    color: #c6c7c8 !important;
+}
+.time-icon { margin-top: -4px; color: #fff;}
+.designTime {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 22px;
+    position: relative;
+    padding-right: 10px;
+    margin-right: 10px;
+    
+    span {
+        display: block;
+    }
+    &::after {
+        content: "";
+background: linear-gradient(0deg, rgba(0,0,0,0.09567577030812324) 0%, rgba(0,0,0,1) 49%, rgba(0,0,0,0.05926120448179273) 100%);
+        width: 1px;
+        height: 100px;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: -20%;
+        @media screen and (max-width: 767px) {
+            display: none;
+        }
+    }
+}
+.m-m-top60{
+    @include respond-to(responsiveMax767) {
+        margin-top: 50px;
+    }
+}
+
+.edit-action {
+    position: absolute;
+    top: 0;
+    right: 3%;
+    @include respond-to(responsiveMax767) { 
+        right: inherit;
+        left: 25px;
+        display: grid;
+        button {
+            margin-bottom: 10px;
+        }
+    }
+}
+.projectList {
+    h3 {
+        border-bottom: 1px solid #dedede;
+        margin-bottom: 5px;
+        font-weight: 500;
+        font-size: 15px;
+    }
+    ul {
+        list-style: none;
+        margin: 0;
+        padding-left: 10px;
+        li {
+            a {
+                color: $secondary-color;
+            }
+        }
+    }
+}
+.leaveBox {
+    ul {
+        margin: 0;
+        list-style: none;
+        padding: 0;
+       
+    }
+}
+.holidayBox {
+    ul {
+        margin: 0;
+        list-style: none;
+        padding: 0;
+        li{
+            position: relative;
+            padding-left: 18px;
+            line-height: 30px;
+            &::after {
+                content: " ";
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 9px;
+                background-color: #28bebd;
+                height: 10px;
+                width: 10px;
+                border-radius: 50px;
+            }
+            &::before {
+                content: " ";
+                display: block;
+                position: absolute;
+                left: 5px;
+                top: 12px;
+                background-color: #28bebd;
+                height: 30px;
+                width: 1px;
+            }
+            &:last-child {
+                &::before {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.recProjTasks{cursor: pointer; margin-top: 1px; line-height: 22px;}
+
+@include respond-to(medium-screens) { 
+    .f-size22 {
+    font-size: 1rem !important;
+    font-weight: bold;
+    }
+}
+@include respond-to(responsiveMax767) { ard-title {font-size: 1.4rem;}
+}
+
+.h-scroll { min-height: 242px;max-height: 242px; overflow-y: auto;}
+
+
+
+.highlight{
+    // color: #28bebd;
+    cursor: pointer;
+    }
+
+.colorChange{
+    background: #c4ffff;
+}
+
+.cdk-overlay-pane.my-dialog {
+    position: relative!important;
+  }
+  .close.mat-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    line-height: 14px;
+    min-width: auto;
+  }
+
+a.disabled {
+    color: gray;
+    cursor: not-allowed;
+    text-decoration: underline;
+}
+
+a.anchor-disable {
+    color: gray !important;
+    cursor: text;
+    pointer-events: none;
+    text-decoration: none;
+  }

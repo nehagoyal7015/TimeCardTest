@@ -1,0 +1,117 @@
+<div class="Doc">
+  <!-- <button style="float: right; margin-top: 5px;background-color: #13d402;  font-size: large;">Add Document</button> -->
+        <h1>Documents</h1>
+        
+        <mat-card-content>
+          <p></p>
+          <mat-expansion-panel  [expanded]="true" *ngFor="let item of docList" style="margin-top: 10px;">
+              <mat-expansion-panel-header>
+                <mat-panel-title style="font-weight: bold;">
+                    {{item.parentCategoryName}} 
+                </mat-panel-title>
+                <button mat-flat-button color="accent" (click)="$event.stopPropagation();openDialog(addDocument); addDocs(item.categoryParentId,item.parentCategoryName)" class="addBtn mRight c-white m-Top5">Add Document</button>
+
+              </mat-expansion-panel-header>
+              
+                
+              <div class="documents-list-box" *ngFor="let subcate of item.subCategory">
+                <!-- <button (click)="openDialog(addDocument);" class="addBtn m-Right15" style="float: top; background-color: #13d402; font-weight: bold; border-radius: 15cm;">Add {{item.parentCategoryName}}</button> -->
+               
+                  <mat-card-title>{{subcate.categoryName}}
+                  </mat-card-title>
+                
+                <!-- <hr style="border: 1px solid black;"> -->
+                
+                <div *ngFor="let doclist of subcate.docLists" >
+                    <mat-card class="allDocs m-Top10 mat-elevation-z0" style="width: 100%;">
+                    <h2>{{doclist.documentName}} <a  href="{{doclist.description}}">{{doclist.description}} <i class="fas fa-external-link-alt"></i></a></h2>
+                    <mat-card-content style="width: 100%;">{{doclist.details}}</mat-card-content>
+                    <!-- <hr class="mat-elevation-z1"> -->
+                    </mat-card>
+                </div>
+              </div>
+             
+          </mat-expansion-panel>
+        </mat-card-content>
+</div>
+<!-- <div class="Doc">
+  <h1>Domain Type Document</h1>
+</div> -->
+
+
+<ng-template #addDocument>
+  <h1 mat-dialog-title>Add Document</h1>
+  <div mat-dialog-content>
+    <form #usersForm="ngForm">
+
+      <mat-form-field appearance="fill" class="inputBox m-Top10">
+        <mat-label>{{parentCatName}}</mat-label>
+        <mat-select matInput [(ngModel)]="catName" name="catName"  value="-1" required>
+          <mat-option *ngFor="let group of catList" [value]="group">{{group.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="inputBox m-Top10">
+        <mat-label>Document name</mat-label>
+        <input matInput [(ngModel)]="documentName" name="documentName"  value="-1" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="inputBox m-Top10">
+        <mat-label>Details</mat-label>
+        <textarea type="text" matInput id="" cols="" rows="3" [(ngModel)]="details"
+                      name="details" required>
+        </textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="inputBox m-Top10">
+        <mat-label>Link</mat-label>
+        <input matInput [(ngModel)]="description" name="description"  value="-1" required>
+      </mat-form-field>
+      <button mat-flat-button color="warn" style="float: right;" mat-dialog-close>Close</button>
+      <button mat-flat-button color="accent" type="submit" matTooltip="Submit" 
+        [disabled]="!usersForm.valid" (click)="submitDoc(usersForm.value);usersForm.reset()">Add</button>
+    </form>
+  </div>
+
+</ng-template>
+
+<ng-template #addDocumentUpperLevel>
+  <h1 mat-dialog-title>Add Document Category</h1>
+  <div mat-dialog-content>
+    <form #usersForm="ngForm">
+
+      <mat-form-field appearance="fill" class="inputBox m-Top10">
+        <mat-label>Document category name</mat-label>
+        <input matInput [(ngModel)]="documentName" name="documentCategoryName"  value="-1" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="inputBox m-Top10">
+        <mat-label>{{parentCatName}}</mat-label>
+        <mat-select matInput [(ngModel)]="catName" name="catName"  value="-1" required>
+          <mat-option *ngFor="let group of catList" [value]="group">{{group.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="inputBox m-Top10">
+        <mat-label>Document name</mat-label>
+        <input matInput [(ngModel)]="documentName" name="documentName"  value="-1" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="inputBox m-Top10">
+        <mat-label>Details</mat-label>
+        <textarea type="text" matInput id="" cols="" rows="3" [(ngModel)]="details"
+                      name="details" required>
+        </textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="inputBox m-Top10">
+        <mat-label>Link</mat-label>
+        <input matInput [(ngModel)]="description" name="description"  value="-1" required>
+      </mat-form-field>
+      <button mat-flat-button color="warn" style="float: right;" mat-dialog-close>Close</button>
+      <button mat-flat-button color="accent" type="submit" matTooltip="Submit" 
+        [disabled]="!usersForm.valid" (click)="submitDoc(usersForm.value)">Add</button>
+    </form>
+  </div>
+
+</ng-template>

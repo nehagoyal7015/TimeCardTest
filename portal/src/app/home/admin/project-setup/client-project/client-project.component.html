@@ -1,0 +1,143 @@
+<h1>Client</h1>
+<app-ng-dynamic-breadcrumb [bgColor]="'rgb(34 47 60 / 10%)'" [fontSize]="'13px'" [fontColor]="'#0275d8'"
+        [lastLinkColor]="'#000'" [symbol]="' / '"></app-ng-dynamic-breadcrumb>
+<div class="bg-white p20">
+    <div class="w-100 d-block align-right">
+      <button mat-flat-button color="accent" class="m-Bottom10" (click)="addNewProj()">Add New Project</button>
+    </div>
+    <div class="client-box w-100 m-Top10 clear">
+        <mat-accordion [multi]="true">
+            <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Dynamsim
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p>
+                    <mat-list>
+                        <mat-list-item>
+                            <div class="item-box">Chada</div>
+                            <div class="f-right">
+                                <button mat-icon-button [matMenuTriggerFor]="menu"
+                                    aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>
+                                        <span>Test 1</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <span>Test 2</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <span>Test 3</span>
+                                    </button>
+                                </mat-menu>
+                            </div>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>
+                            <div class="item-box">Dynamism/Gizmine website</div>
+                            <div class="f-right">
+                                <button mat-icon-button [matMenuTriggerFor]="menu"
+                                    aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>
+                                        <span>Test 1</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <span>Test 2</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <span>Test 3</span>
+                                    </button>
+                                </mat-menu>
+                            </div>
+                        </mat-list-item>
+                        
+                       
+                    </mat-list>
+                </p>
+            </mat-expansion-panel>
+            <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        IEC
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p>
+                    <mat-list>
+                        <mat-list-item>
+                            <div class="item-box">IEC_Budget</div>
+                            <div class="f-right">
+                                <button mat-icon-button [matMenuTriggerFor]="menu"
+                                    aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>
+                                        <span>Test 1</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <span>Test 2</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <span>Test 3</span>
+                                    </button>
+                                </mat-menu>
+                            </div>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>
+                            <div class="item-box">SSRS and Other</div>
+                            <div class="f-right">
+                                <button mat-icon-button [matMenuTriggerFor]="menu"
+                                    aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>
+                                        <span>Test 1</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <span>Test 2</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <span>Test 3</span>
+                                    </button>
+                                </mat-menu>
+                            </div>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>
+                            <div class="item-box">Transcript</div>
+                            <div class="f-right">
+                                <button mat-icon-button [matMenuTriggerFor]="menu"
+                                    aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>
+                                        <span>Test 1</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <span>Test 2</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <span>Test 3</span>
+                                    </button>
+                                </mat-menu>
+                            </div>
+                        </mat-list-item>
+                    </mat-list>
+                </p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div>

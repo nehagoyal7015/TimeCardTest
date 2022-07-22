@@ -1,0 +1,29 @@
+.empListBox {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px 0 10px;
+    li{
+        line-height: 25px;
+        width: 25%;
+        margin-bottom: 10px;
+    }
+}
+.border-box {
+    padding: 5px 25px;
+    border: 1px solid #dedede;
+    position: relative;
+    padding-top: 25px;
+    label {
+        background: #fff;
+        padding: 1px 5px;
+        border: 1px solid #dedede;
+        position: absolute;
+        top: -14px;
+        left: 15px;
+    }
+}
+.mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }

@@ -1,0 +1,56 @@
+@import "./../../../../assets/scss/mixins.scss";
+.w-35 {
+    width: 35%;
+    @include respond-to(responsiveMax767) {
+        width: 100%;
+    }
+}
+
+.m0 { margin-bottom: 0 !important;}
+.clientDetails {
+    border: 1px solid #dedede;
+    padding: 0px 10px;
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        li {
+            width: 49%;
+            line-height: 35px;
+            span {
+                margin-right: 5px;
+            }
+        }
+    }
+}
+.discription-client {
+    width: 100%;
+    .discription-box {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        align-items: center;
+        @include respond-to(responsiveMax767) {
+            display: block;
+        }
+        div {
+            width: 25%;
+            display: flex;
+            @include respond-to(responsiveMax767) {
+                display: block;
+                width: 100%;
+                line-height: 28px;
+            }
+        }
+    }
+    .edit-client-btn {
+        justify-content: end;
+        padding-right: 7%;
+    }
+}
+.cursor-pointer { 
+    cursor: pointer;
+}

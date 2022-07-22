@@ -1,0 +1,84 @@
+<h2>Employee List</h2>
+<app-ng-dynamic-breadcrumb [bgColor]="'rgb(34 47 60 / 10%)'" [fontSize]="'13px'" [fontColor]="'#0275d8'"
+  [lastLinkColor]="'#000'" [symbol]="' / '"></app-ng-dynamic-breadcrumb>
+<div class="bg-white p20 h-vh95">
+
+  <div class="w-100 m-Bottom10 ">
+
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle class="accent" checked (click)="emp(0)">Active</mat-button-toggle>
+      <mat-button-toggle class="accent" (click)="emp(1)">InActive</mat-button-toggle>
+      <mat-button-toggle class="accent" (click)="emp(2)">All</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <button mat-flat-button color="primary" class="print-btn"  (click)="exportExcel()">Export to Excel</button>
+    <button mat-flat-button color="primary" class="print-btn"  (click)="captureScreen()">Print</button>
+    <button mat-flat-button color="accent" class="m-Bottom10 f-right" (click)="addNewEmp()">Add</button>
+  </div>
+  <div class="over-scroll-table">
+    <div class="example-container over-scroll-table mat-elevation-z8 m-Top10">
+      <table class="w-100" mat-table [dataSource]="empListIsActive" id="employeeReport">
+       
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="empId">
+          <th mat-header-cell *matHeaderCellDef> Emp Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.empId}} </td>
+        </ng-container>
+        <!-- Weight Column -->
+        <ng-container matColumnDef="joiningDate">
+          <th mat-header-cell *matHeaderCellDef> Join Date</th>
+          <td mat-cell *matCellDef="let element"> {{element.joiningDate | date: 'dd-MM-yyyy'}} </td>
+        </ng-container>
+        <!-- Weight Column -->
+        <ng-container matColumnDef="emailId">
+          <th mat-header-cell *matHeaderCellDef> Email Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.emailId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phoneNumber">
+          <th mat-header-cell *matHeaderCellDef> Phone No.</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.phoneNumber}}
+          </td>
+        </ng-container>
+
+     <div  *ngIf="status !== 'All'" >
+        <ng-container matColumnDef="iconList">
+          <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" [hidden]="isAllSelected !== false" >
+              <button mat-icon-button [matMenuTriggerFor]="menu" >
+                <mat-icon  *ngIf="status !== 'All'">more_vert</mat-icon>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="empDetails(element.pK_Id)">
+                    <span>Edit </span>
+                  </button>
+                  <button mat-menu-item (click)="activeInActiveEvent(element.pK_Id,statusLable)">
+                    <span>{{statusLable}}</span>
+                  </button>
+                  <button mat-menu-item *ngIf="status != 'InActive'" (click)="asignedProject(element.pK_Id,element.userId)">
+                    <span>Asign Project</span>
+                  </button>
+                </mat-menu>
+              </button>
+            </td>
+        </ng-container>
+   </div>
+   <div *ngIf="status === 'All'">
+        <ng-container matColumnDef="iconList" >
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+          </td>
+        </ng-container>
+      </div>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+</div>

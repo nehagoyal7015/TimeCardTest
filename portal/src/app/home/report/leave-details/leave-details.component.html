@@ -1,0 +1,79 @@
+
+<div class="leave-setup-page">
+    <h2>Leave Report</h2>
+    <app-ng-dynamic-breadcrumb [bgColor]="'rgb(34 47 60 / 10%)'" [fontSize]="'13px'" [fontColor]="'#0275d8'"
+        [lastLinkColor]="'#000'" [symbol]="' / '"></app-ng-dynamic-breadcrumb>
+    <div class="p20 bg-white m-Top10 h-vh70">
+        <div class="d-flex justify-between">
+            <div class="d-flex w-100">
+                <mat-form-field appearance="fill" class="inputBox m-Right10 w-100">
+                    <mat-label>Year</mat-label>
+                    <mat-select [(ngModel)]="selectLeaveReport.yearVal" name="year"> 
+                      <mat-option *ngFor="let yearVal of yearList" [value]="yearVal">
+                        {{yearVal}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" class="inputBox m-Right10 w-100">
+                    <mat-label>Employee</mat-label>
+                    <mat-select [(ngModel)]="selectLeaveReport.userName" name="employee">
+                      <mat-option *ngFor="let employeeVal of employeeList" [value]="employeeVal.userName">
+                        {{employeeVal.userName}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" class="inputBox m-Right10 w-100">
+                    <mat-label>Date</mat-label>
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="selectLeaveReport.date">
+                    <mat-datepicker-toggle matSuffix [for]="picker" startView="multi-year"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+
+                 
+                  <!-- <mat-form-field appearance="fill" class="inputBox m-Right10 w-100">
+                    <mat-label>Date</mat-label>
+                    <mat-select [(ngModel)]="leaveReport.date" name="date">
+                      <mat-option *ngFor="let dateVal of dateList" [value]="dateVal.key">
+                        {{dateVal.description}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field> -->
+                  <button class="serch m-Right10" mat-flat-button color="accent" (click)="getSearchReport()">Genrate</button>
+                  <button mat-flat-button color="primary" class="serch" (click)="captureScreen()">Print</button>
+            </div>
+            
+        </div>
+        
+        <div class="over-scroll-table m-Top10">
+            
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100" id="leaveReport">
+                <!-- Date Column -->
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef> Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.fromDate}} - {{element.fromDate}} </td>
+                </ng-container>
+                <!-- Employee Column -->
+                <ng-container matColumnDef="employee">
+                    <th mat-header-cell *matHeaderCellDef> Employee </th>
+                    <td mat-cell *matCellDef="let element"> {{element.employee}} </td>
+                </ng-container>
+                <!-- Leave Type To Column -->
+                <ng-container matColumnDef="leaveType">
+                    <th mat-header-cell *matHeaderCellDef> Leave Type </th>
+                    <td mat-cell *matCellDef="let element"> {{element.leaveType}} </td>
+                </ng-container>
+                <!-- Reason Column -->
+                <ng-container matColumnDef="reason">
+                    <th mat-header-cell *matHeaderCellDef> Reason </th>
+                    <td mat-cell *matCellDef="let element"> {{element.reason}} </td>
+                </ng-container>
+                <ng-container matColumnDef="total">
+                  <th mat-header-cell *matHeaderCellDef> Total </th>
+                  <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+              </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>

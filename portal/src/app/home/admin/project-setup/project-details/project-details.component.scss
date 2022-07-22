@@ -1,0 +1,28 @@
+
+.budget-box {
+    background-color: rgba(82, 80, 80, 0.1);
+    padding: 10px 25px;
+    div {
+        h2 {
+            margin-bottom: 0;
+        }
+        span {
+            font-size: 17px;
+            font-weight: 500;
+            color: #525050;
+        }
+    }
+}
+.project-details {
+    h2 {
+        margin-bottom: 0;
+    }
+}
+.userNameLink {
+    cursor: pointer;
+    color: #26c6da;
+    text-decoration: underline;
+}
+.wrap-inherit {
+    white-space: inherit !important;
+}

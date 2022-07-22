@@ -1,0 +1,9 @@
+.print-btn {
+    float: right;
+    cursor: pointer;
+    &:hover {
+        .mat-button-focus-overlay {
+            background: transparent !important;
+        }
+    }
+}

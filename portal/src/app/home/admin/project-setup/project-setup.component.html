@@ -1,0 +1,148 @@
+<div class="project-setup-page">
+  <h2>Project Setup</h2>
+  <app-ng-dynamic-breadcrumb [bgColor]="'rgb(34 47 60 / 10%)'" [fontSize]="'13px'" [fontColor]="'#0275d8'" [lastLinkColor]="'#000'" [symbol]="' / '"></app-ng-dynamic-breadcrumb>
+  <form action="" class="w-100">
+    <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="21px" fxLayoutGap.lt-md="6px" fxLayout.xs="column">
+      <div class="cardWrap m-Bottom20" fxFlex="100">
+        <div class="bg-white p20">
+          <div class="d-flex m-d-block justify-between m-Bottom5">
+            <div class="w-35">
+              <mat-form-field appearance="fill" class="inputBox m-Top10">
+                <mat-label>Project Search</mat-label>
+                <input matInput type="text" (keyup)="applyFilter($event)">
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="w-100 m-Top15 align-right">
+                <a mat-stroked-button (click)="newAddClientpopup()" class="p-Left5 p-Right10 m-Right10">
+                  <mat-icon class="f-size22 accent">add</mat-icon>Client
+                </a>
+                <a mat-stroked-button (click)="newAddProjectpopup()" class="p-Left5 p-Right10">
+                  <mat-icon class="f-size22 accent">add</mat-icon>Project
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="project-box">
+            <mat-accordion [multi]="true">
+              <mat-expansion-panel [expanded]="true" *ngFor="let clientDetails of clientAndProductDetails">
+                <mat-expansion-panel-header>
+                  <div class="discription-client">
+                    <div class="discription-box">
+                      <div>
+                        <mat-panel-title>
+                          {{clientDetails.clientName}}
+                        </mat-panel-title>
+                      </div>
+                      <div><strong>Project </strong> : &nbsp;<span class="primary"> {{clientDetails.projectCount}}
+                        </span></div>
+                      <div><strong>CreatedBy </strong> : &nbsp;<span class="primary"> {{clientDetails.createdBy}}
+                        </span> </div>
+                      <div class="edit-client-btn"><a mat-stroked-button (click)="updateClientPopup(clientDetails)"
+                          class="">
+                          <mat-icon class="f-size20 accent">edit</mat-icon>
+                        </a></div>
+                    </div>
+                    <div class="discription-box">
+                      <div><strong>CreatedOn </strong> : &nbsp;<span class="primary"> {{clientDetails.createdOn | date:
+                          'dd-MM-yyyy'}} </span></div>
+                      <div><strong>IsActive On </strong> : &nbsp;<span class="accent">
+                          <mat-icon *ngIf="clientDetails.isActive">done</mat-icon>
+                        </span></div>
+                      <div><strong>Last Submitted On </strong> : &nbsp;<span class="primary">
+                          {{clientDetails.modifiedOn | date: 'dd-MM-yyyy'}} 
+                        </span></div>
+                      <div>&nbsp;</div>
+                    </div>
+                  </div>
+                </mat-expansion-panel-header>
+                <div class="example-container over-scroll-table mat-elevation-z8 m-Top10">
+                  <table class="w-100" mat-table [dataSource]="clientDetails.projectList">
+
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Project </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ownerShips">
+                      <th mat-header-cell *matHeaderCellDef> Manager </th>
+                      <td mat-cell *matCellDef="let element"> {{element.ownerShips}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="budgetHours">
+                      <th mat-header-cell *matHeaderCellDef> Budget Hours </th>
+                      <td mat-cell *matCellDef="let element"> {{element.budgetHours}} </td>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="projectId">
+                      <th mat-header-cell *matHeaderCellDef> Totle Submitted Hours </th>
+                      <td mat-cell *matCellDef="let element"> {{element.projectId}} </td>
+                    </ng-container> -->
+                    <ng-container matColumnDef="edit">
+                      <th mat-header-cell *matHeaderCellDef width="10%"> </th>
+                      <td mat-cell *matCellDef="let element">
+                        <mat-icon class="m-Right10 accent cursor-pointer"
+                          (click)="editProject($event, element.projectId, clientDetails.clientId)">edit</mat-icon>
+                        <mat-icon class="cursor-pointer accent" (click)="projectDetails($event, element.projectId, clientDetails.clientId)"> list_alt</mat-icon>
+                      </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row (click)="getRowData(row, $event)" *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                </div>
+              </mat-expansion-panel>
+
+            </mat-accordion>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<ng-template #addClient>
+  <button mat-button class="close-icon dialog-close-icon" [mat-dialog-close]="true">
+    <mat-icon>close</mat-icon>
+</button>
+  <h1 mat-dialog-title>{{PopupFormName}}</h1>
+  <div mat-dialog-content>
+    <form action="" class="m-Top10" #addEditClient="ngForm">
+      <div fxLayout="row w p" fxLayoutAlign="" fxLayoutGap="10px" fxLayoutGap.lt-md="6px" fxLayout.xs="column">
+        <div class="cardWrap m-Bottom20" fxFlex="49">
+          <mat-form-field appearance="fill" class="inputBox w-100">
+            <mat-label>Client Name</mat-label>
+            <input matInput [(ngModel)]="newAddClient.clientName" name="Cname" autocomplete="off" required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="inputBox w-100 ">
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="newAddClient.emailAddress" name="email" email #clientEmailValid="ngModel" autocomplete="off">
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="inputBox w-100">
+            <mat-label>Contact Phone</mat-label>
+            <input matInput [(ngModel)]="newAddClient.contactNo" name="cPhone" autocomplete="off" >
+          </mat-form-field>
+        </div>
+        <div class="cardWrap m-Bottom20" fxFlex="49">
+          <mat-form-field appearance="fill" class="inputBox w-100">
+            <mat-label>Website</mat-label>
+            <input matInput [(ngModel)]="newAddClient.website" name="cWebsite" autocomplete="off" >
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="inputBox w-100">
+            <mat-label>Country</mat-label>
+            <input matInput [(ngModel)]="newAddClient.country" name="cWebsite" autocomplete="off" >
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="inputBox w-100">
+            <mat-label>Client Address</mat-label>
+            <textarea matInput rows='3' [(ngModel)]="newAddClient.address" name="cAddress" autocomplete="off"
+              ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="w-100 m-Bottom10 align-right">
+        <button mat-flat-button color="accent" class="c-white m-Right10" [disabled]="!addEditClient.valid"
+          (click)="saveUpdateClient(); addEditClient.reset();">Save</button>
+        <button mat-flat-button (click)="closePopUP()" color="warn">Cancel</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+

@@ -1,0 +1,10 @@
+.serch {
+    display: block;
+    height: 44px;
+    margin-top: 6px;
+}
+@media screen and (min-width: 768px) {
+.serch{
+    width: 35%;
+}
+}

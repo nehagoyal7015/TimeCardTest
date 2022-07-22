@@ -1,0 +1,137 @@
+<div class="profile-page"> 
+    <h1 class="title">My Profile</h1>
+    <div fxLayout="row" fxLayoutAlign="" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayout.xs="column">
+        <div fxFlex="35" class="">
+            <div class="bg-white p20">
+                <div class="user-Login">
+                    <figure><img class="user-profile" src="./../../../assets/img/eCommerce.jpg" alt="user"></figure>
+                    <p class="f-size14 m-Top10">{{EmployeeInformation.userName}}</p>
+                    <h6>{{EmployeeInformation.userEmail}}</h6>
+                </div>
+                <div class="w-100 m-Bottom10 align-center">
+                    <button mat-flat-button color="primary" (click)="editProfilePopUp()" class="m-Right10">Edit
+                        <mat-icon class="edit-profile">edit</mat-icon></button>
+                </div>
+            </div>
+            <div class="bg-white p20 m-Top20">
+                <div class="card-body border-top">
+                    <h5 class="font-weight-semibold m-Bottom20">Skills</h5>
+                    <a class="btn btn-sm btn-white mt-1" href="javascript:void(0)" *ngFor="let skil of EmployeeInformation.skillList">{{skil}}</a> 
+                    
+                </div>
+            </div>
+            <div class="bg-white p20 m-Top20">
+                <div class="contact-body border-top">
+                    <h5 class="m-Bottom20">Contact</h5>
+                    <div class="main-profile-contact-list d-flex m-Top20">
+                        <div class="media me-4 d-flex">
+                            <div class="media-icon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="media-body"> <small class="text-muted">Mobile</small>
+                                <div class="font-weight-semibold"> {{EmployeeInformation.phoneNumber}} </div>
+                            </div>
+                        </div>
+                        <div class="media me-4 d-flex">
+                            <div class="media-icon"> <i class="fab fa-skype"></i> </div>
+                            <div class="media-body"> <small class="text-muted">Skype</small>
+                                <div class="font-weight-semibold"> {{EmployeeInformation.skypeId}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media d-flex">
+                        <div class="media-icon"> <i class="fa fa-map"></i>
+                        </div>
+                        <div class="media-body"> <small class="text-muted">Current Address</small>
+                            <div class="font-weight-semibold">{{EmployeeInformation.address2}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div fxFlex="65" class="bg-white p20">
+            <div class="profile-details">
+                <ul>
+                    <li><span>Name :</span> {{EmployeeInformation.userName}}</li>
+                    <li><span>Father Name :</span> {{EmployeeInformation.fatherName}}</li>
+                    <li><span>Mother :</span> {{EmployeeInformation.motherName}}</li>
+                    <li><span>Phone :</span> {{EmployeeInformation.phoneNumber}}</li>
+                    <li><span> AlternateNumber :</span> {{EmployeeInformation.alternateNumber}}</li>
+                    <li><span>Personal Email:</span> {{EmployeeInformation.personalEmail}}</li>
+                    <li><span>Address:</span> {{EmployeeInformation.address1}} </li>
+                    <li><span>Address 2:</span> {{EmployeeInformation.address2}} </li>
+                    <li><span>SkypeId:</span>{{EmployeeInformation.skypeId}}</li>
+                    <li><span>Marital Status:</span> <mat-icon *ngIf="EmployeeInformation.isMaritalstatus">done</mat-icon></li>
+                    <li><span>Spouse Email:</span> {{EmployeeInformation.spouseEmail}}</li>
+                    <li><span>Spouse Phone:</span> {{EmployeeInformation.spousePhone}}</li>
+                    <li><span>Spouse Name:</span> {{EmployeeInformation.spouseName}}</li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<ng-template #editProfile>
+    <h1 mat-dialog-title>Edit Profile</h1>
+    <div mat-dialog-content>
+        <div fxLayout="row" class="customForm b-none" fxLayoutAlign="" fxLayout.lt-md="column" fxLayoutGap="20px"
+        fxLayout.xs="column" class="">
+        <div fxFlex="50">
+            <mat-form-field appearance="fill" class="w-100 inputBox">
+                <mat-label>Name</mat-label>
+                <input matInput  [(ngModel)]="EmployeeInformation.userName" name="userName" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-100 inputBox">
+                <mat-label>Father Name</mat-label>
+                <input matInput [(ngModel)]="EmployeeInformation.fatherName" name="fatherName" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-100 inputBox">
+                <mat-label>Mother</mat-label>
+                <input matInput [(ngModel)]="EmployeeInformation.motherName" name="motherName" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-100 inputBox">
+                <mat-label>Phone</mat-label>
+                <input matInput [(ngModel)]="EmployeeInformation.phoneNumber" name="phoneNumber" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-100 inputBox">
+                <mat-label>Phone 2</mat-label>
+                <input matInput [(ngModel)]="EmployeeInformation.alternateNumber" name="alternateNumber" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-100 inputBox">
+                <mat-label>Personal Email</mat-label>
+                <input matInput [(ngModel)]="EmployeeInformation.personalEmail" name="personalEmail" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-100 inputBox">
+                <mat-label>SkypeId</mat-label>
+                <input matInput [(ngModel)]="EmployeeInformation.skypeId" name="skypeId" autocomplete="off">
+            </mat-form-field>
+        </div>
+        <div fxFlex="50">
+            <!-- <strong> Address </strong> -->
+            <mat-form-field class="example-full-width inputBox m-Top10" appearance="fill">
+                <mat-label>Address</mat-label>
+                <textarea matInput  [(ngModel)]="EmployeeInformation.address1" name="address1" placeholder="0" rows="2"> </textarea>
+            </mat-form-field>
+            <mat-form-field class="example-full-width inputBox m-Top10" appearance="fill">
+                <mat-label>Address 2</mat-label>
+                <textarea matInput  [(ngModel)]="EmployeeInformation.address2" name="address2" placeholder="0" rows="2"> </textarea>
+            </mat-form-field>
+            <strong class="m-Bottom20 d-block"> Marital Status <mat-slide-toggle class="f-right" [(ngModel)]="EmployeeInformation.isMaritalstatus" name="isMaritalStatus"></mat-slide-toggle> </strong>
+            <mat-form-field appearance="fill" class="w-100 inputBox">
+                <mat-label>Spouse Name</mat-label>
+                <input matInput [(ngModel)]="EmployeeInformation.spouseName" name="spouseName" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-100 inputBox">
+                <mat-label>Spouse Phone</mat-label>
+                <input matInput  [(ngModel)]="EmployeeInformation.spousePhone" name="spousePhone" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-100 inputBox">
+                <mat-label>Spouse Email</mat-label>
+                <input matInput  [(ngModel)]="EmployeeInformation .spouseEmail" name="spouseEmail" autocomplete="off">
+            </mat-form-field>
+        </div>
+    </div>
+    <button mat-flat-button class="f-right" color="accent" (click)="editProfileInfo()">Save</button>
+    <button mat-flat-button  style = "margin-right:5px;"class="f-right" (click)="closePopUP()" color="warn">Cancel</button>
+    </div>
+</ng-template>

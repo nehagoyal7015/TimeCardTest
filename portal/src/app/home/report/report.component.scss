@@ -1,0 +1,25 @@
+.border-box {
+    border: 1px solid #dedede;
+}
+.border-bottom {
+    border-bottom: 1px solid #dedede;
+    cursor: pointer;
+}
+.cursorPointer {
+cursor: pointer;
+}
+ul {
+    list-style: disc;
+    color: #26c6da !important;
+    font-size: 25px;
+    padding-left: 50px;
+    li {
+        line-height: 31px;
+        a {
+            color: #26c6da !important;
+            font-size: 16px;
+            font-weight: 400;
+            text-decoration: none;
+        }
+    }
+}

@@ -1,0 +1,62 @@
+.titleName { 
+    white-space: nowrap;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.bg-gray {
+    background-color: #dedede;
+}
+.titleValue { min-width: 35px; text-align: center;}
+.mat-icon {
+    cursor: pointer;
+  }
+.mat-mini-fab
+{
+    background: none;
+}
+.mat-row-label
+{
+   margin-left: 80px;
+}
+.mat-dropdown
+{
+   max-width: 300px;
+}
+.mat-leave
+{
+    margin-right: 0px;
+}
+.row
+{
+    background-color: warn;
+}
+table {
+    width: 100%;
+    cursor: pointer;
+  }
+  .mat-row.highlighted {
+    background: green;
+  }
+  .selected {
+    color: white;
+}
+.highlight{
+    background-color:red; 
+}
+button  {
+    box-shadow: 0px 1px 8px 0px rgb(0 0 0 / 20%), 0px 0px 2px 0px rgb(0 0 0 / 14%), 0px 0px 4px 0px rgb(0 0 0 / 12%);
+    mat-icon {
+        color: #26c6da;
+    }
+}
+button[disabled="true"] {
+    mat-icon {
+        color: red;
+        cursor: auto;
+    }
+}
+  
+.h-65 {
+    min-height: 65px;
+}

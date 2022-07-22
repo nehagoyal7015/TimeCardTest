@@ -1,0 +1,179 @@
+// .serch {
+//   display: block;
+//   height: 44px;
+// }
+
+
+// @media screen and (min-width: 768px) {
+//   .serch {
+//       width: 30%;
+//   }
+//   .w-40 {
+//       width: 22%;
+//   }
+//   .m-Top15 {
+//       margin-top: 15px !important;
+//   }
+// }
+
+table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    // display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: inset 0px 0px 0px #c1c1c1;
+  }
+  
+  .example-element-diagram {
+    // width: 100%;
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+
+  .icon-green {
+    color: green;
+  }
+
+.icon-red{
+  color: red;
+}
+
+.second {
+  text-align: left;
+}
+
+.left{
+  padding-left: 50px;
+}
+
+.theader{
+  margin-right: 15px;
+  padding-left: 32px !important;
+}
+
+.popup{
+  width: 50%;
+}
+
+
+.w-40{
+  width: 22%;
+}
+
+.detail-table {
+  background: #b7b7b773;
+  text-align: center;
+}
+.matList{
+  margin-top: 5px;
+}
+.example-element-description {
+  padding: 16px;
+}
+
+.td, th {
+  border: none;
+  text-align: left;
+  size: fixed;
+  margin-left: 2px;
+  font-size: medium ;
+}
+.pNone { padding: 0 !important;}
+.client-table {
+  background: hwb(0deg 94% 6% / 43%);
+  padding: 0 10px;
+  border-radius: 0 !important;
+  border-bottom: 1px solid #dedede;
+}
+.client-table tr {
+  border-bottom: 1px solid #dedede;
+}
+.client-table tr td,
+.client-table tr th { height: 45px; }
+.client-table tr td { border-top: 1px solid #fff;}
+
+.list-group-item{
+  list-style: none;
+  font-size: small;
+  background-color: #fff;
+  
+  input[type=checkbox]{
+      height: 20px;
+      width: 20px;
+      vertical-align:middle;
+  }
+  div.child-list{
+      margin-top: 10px;
+      .list-group-item{
+          background-color: #fff;
+      }
+  }
+}
+
+.text:hove{
+cursor: pointer;
+}
+
+.addbuttonExpand{
+position: relative;
+top: 5px;
+cursor: pointer;
+}
+clienthover:hover{
+display: block;
+}
+.pointer {
+cursor: pointer;
+
+}
+
+.addbuttonExpand {
+  position: relative;
+  top: 5px;
+  cursor: pointer;
+}
+
+span {
+  display: block;
+  width: 30%;
+  word-break: break-word;
+}

@@ -1,0 +1,53 @@
+<h2>Employee Details</h2>
+<app-ng-dynamic-breadcrumb [bgColor]="'rgb(34 47 60 / 10%)'" [fontSize]="'13px'" [fontColor]="'#0275d8'"
+    [lastLinkColor]="'#000'" [symbol]="' / '"></app-ng-dynamic-breadcrumb>
+<div class="bg-white p20">
+    <div class="w-100 m-Bottom10 align-right">
+        <button mat-flat-button color="accent" class="m-Right10 c-white" (click)="AsignNewProject()">Save</button>
+        <button mat-flat-button color="warn" (click)="backPage()">Cancel</button>
+    </div>
+    <form action="" class="w-100 m-Bottom10" style="margin-top: -40px;" > 
+        <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="10px" fxLayoutGap.lt-md="6px" fxLayout.xs="column"> 
+            <div class="cardWrap m-Bottom20" fxFlex="49">
+                <div>
+                    <!-- <h3 style="font-weight: bold; margin-left:20px;">Employee Name</h3>  {{addAsignProjectForm.employeeName}} -->
+                    <label style="font-weight: bold; font-size: medium; margin-left:20px;">Employee Name  </label> <label style="margin-left: 15px; font-size: medium;">{{addAsignProjectForm.employeeName}}</label>
+                </div>
+                <div style="margin-top: 20px;">
+                    <label  style="font-weight:bold; font-size: medium; margin-left:20px;">Employee Code  </label><label style="margin-left: 15px; font-size: medium;">{{addAsignProjectForm.empCode}}</label>
+
+                </div>
+            </div>
+            <div class="cardWrap m-Bottom20" fxFlex="49" >
+                <div>
+                    <label  style="font-weight: bold;  font-size: medium; margin-left:20px;">Email</label> <label style="margin-left: 15px;font-size: medium;">{{addAsignProjectForm.email}}</label>
+
+                </div>
+                <div style="margin-top: 20px;" >
+                    <label class="mat-caption" style="font-weight: bold; font-size: medium; margin-left:20px;">Phone Number  </label> <label style="margin-left: 15px;font-size: medium;"> {{addAsignProjectForm.phoneNumber}}</label>
+                </div>
+            </div>
+        </div>
+    </form>
+   
+    <div class="people-Box border-box" style="margin-top: 10px;">
+        <label>Project List</label>
+        <mat-accordion *ngFor="let gp of asignProject ">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+                style="margin-top: 10px;"   >
+                <mat-expansion-panel-header>
+                    <mat-panel-title style="font-weight: bold;">  
+                        {{gp.clientName}} [ {{gp.total}} Total, {{gp.asignTotal}} Asigned ]
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ul class="empListBox">
+                    <li *ngFor="let projLIst of gp.projectdata">
+                        <mat-checkbox class="example-ripple-checkbox" [checked]="projLIst.isSelected"
+                        [(ngModel)]="projLIst.isSelected" (change)="projectevent($event, projLIst.projectId)">
+                            {{projLIst.projectName}}</mat-checkbox>
+                    </li>
+                </ul>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div>

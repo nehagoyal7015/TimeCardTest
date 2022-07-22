@@ -1,0 +1,186 @@
+<div class="bg-white p20">
+  <div fxLayout="row" fxLayoutAlign="" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayout.xs="column">
+    <div fxFlex="100">
+      <div *ngIf="adminAccess != 1">
+        <h1 class="title">Leave</h1>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.lt-md="column" fxLayoutGap="20px"
+          fxLayout.xs="column">
+          <div class="w-100 m-Bottom5">
+
+            <div class="d-flex f-right mat-leave">
+              <button mat-flat-button color="primary" (click)="openDialog(addEmpPopup)">New Leave</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="adminAccess == 1">
+        <h1 class="title">Leave</h1>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.lt-md="column" fxLayoutGap="20px"
+          fxLayout.xs="column">
+          <div class="w-100 m-Bottom5">
+            <div class="f-left">
+              <mat-form-field appearance="fill" class="inputBox p-Bottom0 mat-dropdown">
+                <mat-label>Year</mat-label>
+                <mat-select [(ngModel)]="defaultYr" (ngModelChange)='getLeaveList($event)' (click)="selectedRowIndex = -1">
+                  <mat-option *ngFor="let yer of yearList" [value]="yer.value">
+                    {{yer.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="f-left" style="margin-left: 30px;">
+              <mat-form-field appearance="fill" class="inputBox p-Bottom0 mat-dropdown">
+                <mat-label>Employee Name</mat-label>
+                <mat-select (ngModelChange)="onEmployeeChange($event)" [(ngModel)]="selectedUser">
+                  <mat-option *ngFor="let emp of userAccount" [value]="emp.userId">
+                    {{emp.userName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="d-flex f-right mat-leave"> 
+              <button mat-flat-button color="primary" (click)="openDialog(addNewEmpPopup)">New Leave</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="none start" class="">
+        <div fxFlex="100">
+          <div class="over-scroll-table">
+            <table mat-table [dataSource]="leaveList" class="mat-elevation-z8 w-100 m-Top10 ">
+              <ng-container matColumnDef="leaveType">
+                <th mat-header-cell *matHeaderCellDef width="20%"> LeaveType </th>
+                <td mat-cell *matCellDef="let element"> {{element.leaveType}}</td>
+              </ng-container>
+              <ng-container matColumnDef="fromDate">
+                <th mat-header-cell *matHeaderCellDef width="20%"> From</th>
+                <td mat-cell *matCellDef="let element"> {{element.fromDate | date:'MM/dd/yyyy' }} </td>
+              </ng-container>
+              <ng-container matColumnDef="toDate">
+                <th mat-header-cell *matHeaderCellDef width="20%"> To </th>
+                <td mat-cell *matCellDef="let element"> {{element.toDate |date:'MM/dd/yyyy' }} </td>
+              </ng-container>
+              <ng-container matColumnDef="reason">
+                <th mat-header-cell *matHeaderCellDef width="20%"> Reason </th>
+                <td mat-cell *matCellDef="let element"> {{element.reason}} </td>
+              </ng-container>
+              <ng-container matColumnDef="total">
+                <th mat-header-cell *matHeaderCellDef width="20%"> Total </th>
+                <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+              </ng-container>
+              <ng-container matColumnDef="isCancelled">
+                <th mat-header-cell *matHeaderCellDef> Cancelled </th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-mini-fab [disabled]="(element.isCancelled==true)" (click)="cancel(element.leaveId)">
+                    <mat-icon>close</mat-icon>
+                  </button> 
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxFlex="25">
+
+      <table class="mat-table cdk-table mat-elevation-z8 w-100 m-Top118">
+        <thead>
+          <tr class="mat-header-row">
+            <th class="mat-header-cell" colspan="2"><strong>LeaveType</strong></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="mat-row">
+            <td class="mat-cell">Planned</td>
+            <td class="mat-cell">{{userCountList.plannedtotal}}</td>
+          </tr>
+          <tr class="mat-row">
+            <td class="mat-cell">Unplanned</td>
+            <td class="mat-cell">{{userCountList.unplannedtotal}}</td>
+          </tr>
+
+          <tr class="mat-row">
+            <td class="mat-cell"><strong>Total</strong></td>
+            <td class="mat-cell"><strong>{{userCountList.totalCount}}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <ng-template #addEmpPopup>
+    <h1 mat-dialog-title>New Leave </h1>
+    <div mat-dialog-content>
+      <form [formGroup]="leaveForm">
+        <mat-form-field appearance="fill" class="inputBox m-Top10">
+          <mat-label>Type Leave</mat-label>
+          <mat-select formControlName="leaveType" autocomplete="off">
+            <mat-option value="Unplanned">Unplanned</mat-option>
+            <mat-option value="planned"> Planned</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="inputBox m-Top10">
+          <mat-label>From Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="fromDate" autocomplete="off"
+            (dateChange)="dateChangeEvent($event)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="inputBox m-Top10">
+          <mat-label>To Date</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="toDate" [min]="minDate" autocomplete="off">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="inputBox m-Top10">
+          <mat-label>Reason</mat-label>
+          <input matInput formControlName="reason" autocomplete="off">
+        </mat-form-field>
+      </form>
+    </div>
+    <div mat-dialog-actions class="f-right">
+      <button mat-flat-button color="warn" mat-dialog-close>Close</button>
+      <button mat-flat-button color="accent" type="submit" (click)="onFormSubmit()" matTooltip="Submit"
+        [disabled]="!leaveForm.valid">Save</button>
+    </div>
+  </ng-template>
+</div>
+<ng-template #addNewEmpPopup>
+  <h1 mat-dialog-title>New Leave </h1>
+  <div mat-dialog-content>
+    <form [formGroup]="leaveForm">
+      <mat-form-field appearance="fill" class="inputBox m-Top10">
+        <mat-label>Type Leave</mat-label>
+        <mat-select formControlName="leaveType" autocomplete="off">
+          <mat-option value="Unplanned">Unplanned</mat-option>
+          <mat-option value="planned"> Planned</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="inputBox m-Top10">
+        <mat-label>From Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fromDate" autocomplete="off"
+          (dateChange)="dateChangeEvent($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="inputBox m-Top10">
+        <mat-label>To Date</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="toDate" [min]="minDate" autocomplete="off">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="inputBox m-Top10">
+        <mat-label>Reason</mat-label>
+        <input matInput formControlName="reason" autocomplete="off">
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions class="f-right">
+    <button mat-flat-button color="warn" mat-dialog-close>Close</button>
+    <button mat-flat-button color="accent" type="submit" (click)="onNewFormSubmit()" matTooltip="Submit"
+      [disabled]="!leaveForm.valid">Save</button>
+  </div>
+</ng-template>

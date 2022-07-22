@@ -1,0 +1,131 @@
+<h1>Project {{saveBTN}}</h1>
+<app-ng-dynamic-breadcrumb [bgColor]="'rgb(34 47 60 / 10%)'" [fontSize]="'13px'" [fontColor]="'#0275d8'"
+  [lastLinkColor]="'#000'" [symbol]="' / '"></app-ng-dynamic-breadcrumb>
+<div class="bg-white p20">
+ 
+  <form action="" class="m-Top10" #addEditProject="ngForm">
+
+    <div class="w-100 m-Bottom10 align-right">
+      <button mat-flat-button color="accent" (click)="AddEditProject();addEditProject.reset();"
+        [disabled]="!addEditProject.valid"   class="m-Right10 c-white">{{saveBTN}}</button>
+      <button mat-flat-button color="warn" (click)="backPage()">Cancel</button>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="10px" fxLayoutGap.lt-md="6px" fxLayout.xs="column">
+      <div class="cardWrap m-Bottom20" fxFlex="49">
+        <mat-form-field appearance="fill" class="inputBox w-100">
+          <mat-label>Client</mat-label>
+          <mat-select [(ngModel)]="addProjectForm.clientId" name="client">
+            <mat-option *ngFor="let clientVal of clientList" [value]="clientVal.key">
+              {{clientVal.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="w-100 inputBox">
+          <mat-label>Project Name</mat-label>
+          <input matInput [(ngModel)]="addProjectForm.name" name="projectName"  autocomplete="off" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="inputBox w-100">
+          <mat-label>Budget Cost</mat-label>
+          <input matInput [(ngModel)]="addProjectForm.budgetCost" name="budgetCost" autocomplete="off">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="inputBox w-100">
+          <mat-label>Budgets Hours</mat-label>
+          <input matInput [(ngModel)]="addProjectForm.budgetHours" name="budgetHours"  autocomplete="off">
+        </mat-form-field>
+        <span>IsBillable</span>
+        <mat-slide-toggle class="f-right" [(ngModel)]="addProjectForm.isBillable"   name="isBillable">
+        </mat-slide-toggle>
+      </div>
+      <div class="cardWrap m-Bottom20" fxFlex="49">
+        <mat-form-field class="example-full-width" appearance="fill" class="inputBox w-100">
+          <mat-label>Project Start Date</mat-label>
+          <input matInput [(ngModel)]="addProjectForm.startDate" name="projectStartDate"   [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill" class="inputBox w-100">
+          <mat-label>Project Estimate</mat-label>
+          <!-- <input [(ngModel)]="domainId" style="display: none;"> -->
+          <input matInput [(ngModel)]="addProjectForm.estimateCompletion" name="projectEndDate"
+            [matDatepicker]="projectEstimate">
+          <mat-datepicker-toggle matSuffix [for]="projectEstimate"></mat-datepicker-toggle>
+          <mat-datepicker #projectEstimate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill" class="inputBox w-100">
+          <mat-label>Project End Date</mat-label>
+          <input matInput [(ngModel)]="addProjectForm.closeDate" name="projectEndDate" 
+            [matDatepicker]="projectEndDates">
+          <mat-datepicker-toggle matSuffix [for]="projectEndDates"></mat-datepicker-toggle>
+          <mat-datepicker #projectEndDates></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="inputBox w-100">
+          <mat-label>Project Lead</mat-label>
+          <mat-select [(ngModel)]="addProjectForm.userId" name="projectLead"  >
+            <mat-option *ngFor="let EmpVal of EmployeeList" [value]="EmpVal.key">
+              {{EmpVal.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+      </div>
+    </div>
+  
+  <div class="taskAdd w-100" >
+    <tr>
+      <th style="width: 50%;"><mat-label>Task Name</mat-label></th>
+      <th style="width: 20%; padding: 10px;"><mat-label>BudgetCost</mat-label></th>
+      <th style="width: 20%"><mat-label>BudgetHours</mat-label></th>
+    </tr>
+    <tr *ngFor="let info of taskDetailList; let i = index;">
+      <td style="display: none">
+        <mat-form-field appearance="fill" class="w-100 inputBox">
+          <input matInput style="display: none" [(ngModel)]="info.taskId" name="info.taskId_{{i}}" [disabled]="info.isArchive ==true" placeholder="Project Task"
+            autocomplete="off">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill" class="w-100 inputBox">
+          <input matInput [(ngModel)]="info.task" name="info.task_{{i}}" [disabled]="info.isArchive ==true" placeholder="Project Task"
+            autocomplete="off">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill" class="w-100 inputBox" style="padding:5px; ">
+          <input matInput [(ngModel)]="info.taskBudgetCost" name="info.taskBudgetCost_{{i}}"  [disabled]="info.isArchive ==true" placeholder="Budget Cost"
+            autocomplete="off">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill" class="w-100 inputBox"style="padding:5px;">
+          <input matInput [(ngModel)]="info.taskBudgetHours" name="info.taskBudgetHours_{{i}}" [disabled]="info.isArchive ==true " placeholder="Budget Hours"
+            autocomplete="off">
+        </mat-form-field>
+      </td> 
+      <td>
+        <mat-icon (click)="removeAddress(i)">close</mat-icon> 
+      </td>
+      <section class="example-section f-right">
+        <mat-slide-toggle class="example-margin" [(ngModel)]="info.isArchive" name="info.isArchive_{{i}}"><strong>IsArchived</strong></mat-slide-toggle>
+      </section>
+    </tr>
+  </div>
+  <div class="f-size20 accent addbutton">
+    <a mat-stroked-button  (click)="addTask()" class="p-Left5 p-Right10 m-Right10">
+    <mat-icon class="f-size20 accent" >add</mat-icon>Add More
+    </a>
+  </div>
+  
+    <div class="people-Box border-box">
+      <label>People that can enter time- to this project</label>
+      <!-- {{this.addProjectForm.allEmp | json}} -->
+      <mat-checkbox [checked]="addEmp" (change)="selectCheck($event)" class="example-ripple-checkbox"> <strong> Select
+          All</strong></mat-checkbox>
+      <ul class="empListBox">
+        <li *ngFor="let emp of empList">
+          <mat-checkbox [checked]="emp.isActive" (change)="eventCheck($event, emp.key)" class="example-ripple-checkbox">
+            {{emp.description}}</mat-checkbox>
+        </li>
+      </ul>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,297 @@
+<div class="loginPage">
+    <div class="login" style="background-image: url(./.././../assets/img/banner-55.jpg);">
+        <div class="be-overlay"></div>
+        <header class="bg-primary">
+            <div class="wrap">
+                <div fxLayout="row" fxLayoutAlign="" fxLayoutGap="20px">
+                    <div fxFlex="30">
+                        <img src="./../../assets/img/logo.png">
+                    </div>
+                    <div fxFlex="70" class="align-right">
+                        <div class="menu">
+                            <button mat-button [matMenuTriggerFor]="belowMenu" class="c-white">Features</button>
+                            <mat-menu #belowMenu="matMenu" yPosition="above">
+                                <button mat-menu-item>Item 1</button>
+                                <button mat-menu-item>Item 2</button>
+                            </mat-menu>
+                            <button mat-button class="c-white">Pricing</button>
+                            <button mat-button class="c-white bg-accent">Get Started</button>
+                        </div>
+                        <div class="mobileNav">
+                            <button mat-icon-button [matMenuTriggerFor]="menu" class="c-white"
+                                aria-label="Example icon-button with a menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item><span>Features</span></button>
+                                <button mat-menu-item><span>App & Integrations</span></button>
+                                <button mat-menu-item><span>Pricing</span></button>
+                                <button mat-menu-item><span>Blog</span></button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="wrap">
+            <div fxLayout="row" fxLayoutAlign="" fxLayoutGap="20px" fxLayout.xs="column">
+                <div fxFlex="70" fxFlex.lt-md="55" fxFlexAlign="center">
+                    <div class="bannerText c-white" fxFlexOffset="150px" fxFlexOffset.sx="0px">
+                        <h1>Customized Self-Sustaining Solutions <br>People, Process & Technology </h1>
+                        <h2>Value through Expertise, Efficiency & Simplicity</h2>
+                        <button mat-flat-button color="accent">Get Started</button>
+                        <p class="no aling-center">Information Technology Services with Global Delivery</p>
+                    </div>
+                </div>
+                <div fxFlex="30" fxFlex.lt-md="45">
+                    <div class="status-box logForm p20 m-Top10">
+                        <form (ngSubmit)="onSubmit(heroForm)" #heroForm="ngForm">
+                        <mat-form-field class="example-full-width w-100 m-Top10" appearance="fill">
+                            <mat-label>Domain</mat-label>
+                            <input type="text" matInput [(ngModel)]="user.domainName" #domain="ngModel" name="domain" placeholder="Domain Name"
+                            autocomplete="off"  required/>
+                            <mat-error *ngIf="domain.touched && !domain.valid">
+                                <p *ngIf="domain.errors?.required">Domain value is required.</p>
+                            </mat-error>
+                        </mat-form-field>
+                       
+                        <mat-form-field class="example-full-width w-100" appearance="fill">
+                            <mat-label>UserEmail</mat-label>
+                            <input type="text" matInput autocomplete="off" [(ngModel)]="user.userEmail" #email="ngModel" required name="emails" autocomplete="false"
+                                placeholder="UserEmail" required/>
+                                <mat-error *ngIf="email.touched && !email.valid">
+                                    <p *ngIf="email.errors?.required">UserEmail value is required.</p>
+                                    <p *ngIf="email.errors?.pattern">This is not a valid Email!</p>
+                                </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width w-100" appearance="fill"> 
+                            <mat-label>Password</mat-label>
+                            <input type="password" matInput [(ngModel)]="user.password" #password="ngModel" required name="passwords" autocomplete="new-password" placeholder="******" />
+                            <mat-error *ngIf="password.touched && !password.valid">
+                                <p *ngIf="password.errors?.required">Password value is required.</p>
+                            </mat-error>
+                        </mat-form-field>
+                       
+                        <!-- <div fxLayout="row" class="foget" fxLayoutAlign="" fxLayoutGap="20px">
+                        <div fxFlex="50"><mat-checkbox class="example-margin">Remember me</mat-checkbox></div>
+                        <div fxFlex="50" class="align-right"><a href="" class="warn">I forgot my password</a></div>
+                        </div> -->
+                        <div class="align-center m-Top10">
+                            <button type="submit" mat-flat-button color="primary" [disabled]="!heroForm.form.valid">Login</button>
+                        </div>
+                        <div class="align-center m-Top10">
+                              
+                        </div>
+                        
+                    </form>
+                        <button (click)="loginWithGoogle()" mat-flat-button class="google-login-btn">
+                             Google
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="whatWeOffer p-Top70 p-Bottom70">
+        <div class="shell">
+            <h2 class="title">what we offer</h2>
+            <hr class="">
+            <div class="wrap">
+                <div fxLayout="row wrap" fxLayoutAlign=""  fxLayoutGap="27px" fxLayoutGap.lt-md="6px" fxLayout.xs="column">
+                    <div class="cardWrap m-Top70" fxFlex="31.5" fxFlex.lt-md="49">
+                        <div class="d-flex flex-center">
+                            <div class="weOffer-left bg-accent">
+                                <mat-icon>donut_small</mat-icon>
+                            </div>
+                            <div class="weOffer-body" fxFlex="65">
+                                <h4 class="">Team Spirit</h4>
+                                <p>We help each other, wherever we are. This makes work easier.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardWrap m-Top70" fxFlex="31.5" fxFlex.lt-md="49">
+                        <div class="d-flex flex-center">
+                            <div class="weOffer-left bg-accent">
+                                <mat-icon> directions_railway</mat-icon>
+                            </div>
+                            <div class="weOffer-body" fxFlex="65">
+                                <h4 class="text-bold font-accent">Join the Industry</h4>
+                                <p>As you might expect, joining this industry gives new opportunities.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardWrap m-Top70" fxFlex="31.5" fxFlex.lt-md="49">
+                        <div class="d-flex flex-center">
+                            <div class="weOffer-left bg-accent">
+                                <mat-icon> map</mat-icon>
+                            </div>
+                            <div class="weOffer-body" fxFlex="65">
+                                <h4 class="text-bold font-accent">Find the Nearest Branch</h4>
+                                <p>You can freely use our interactive map to find the nearest office.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardWrap m-Top70" fxFlex="31.5" fxFlex.lt-md="49">
+                        <div class="d-flex flex-center">
+                            <div class="weOffer-left bg-accent">
+                                <mat-icon>stars</mat-icon>
+                            </div>
+                            <div class="weOffer-body" fxFlex="65">
+                                <h4 class="text-bold font-accent">New Technologies</h4>
+                                <p>If you're in logistics, expect to work with 3-D graphics.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardWrap m-Top70" fxFlex="31.5" fxFlex.lt-md="49">
+                        <div class="d-flex flex-center">
+                            <div class="weOffer-left bg-accent">
+                                <mat-icon>contact_support</mat-icon>
+                            </div>
+                            <div class="weOffer-body" fxFlex="65">
+                                <h4 class="text-bold font-accent">24/7 Support</h4>
+                                <p>Our experts work day and night to solve all your cargo-related problems.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardWrap m-Top70" fxFlex="31.5" fxFlex.lt-md="49">
+                        <div class="d-flex flex-center">
+                            <div class="weOffer-left bg-accent">
+                                <mat-icon>redeem</mat-icon>
+                            </div>
+                            <div class="weOffer-body" fxFlex="65">
+                                <h4 class="text-bold font-accent">Document Preparation</h4>
+                                <p>Our document maintenance methodology is dependable.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <section class="whatWeOffer servicesBox p-Top70 p-Bottom70">
+        <div class="shell">
+            <h2 class="title">Our Services</h2>
+            <hr class="">
+            <div class="wrap">
+                <div fxLayout="row wrap" fxLayoutGap="27px" fxLayoutGap.lt-md="6px" fxLayout.xs="column" class="m-Top50">
+                    <div class="cardWrap m-Top20" fxFlex="31.5" fxFlex.lt-md="49">
+                        <div class="serveces-center">
+                            <figure class="">
+                                <img src="./../../assets/img/eCommerce.jpg" alt="">
+                            </figure>
+                            <div class="weOffer-body">
+                                <h4 class="">eCommerce</h4>
+                                <p>We help each other, wherever we are. This makes work easier.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardWrap m-Top20" fxFlex="31.5" fxFlex.lt-md="49">
+                        <div class="serveces-center">
+                            <figure class="">
+                                <img src="./../../assets/img/cloud.png" alt="">
+                            </figure>
+                            <div class="weOffer-body">
+                                <h4 class="text-bold font-accent">Cloud Computing</h4>
+                                <p>As you might expect, joining this industry gives new opportunities.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardWrap m-Top20" fxFlex="31.5" fxFlex.lt-md="49">
+                        <div class="serveces-center">
+                            <figure class="">
+                                <img src="./../../assets/img/mobile-app.jpg" alt="">
+                            </figure>
+                            <div class="weOffer-body">
+                                <h4 class="text-bold font-accent">Mobile Apps</h4>
+                                <p>You can freely use our interactive map to find the nearest office.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardWrap m-Top20" fxFlex="31.5" fxFlex.lt-md="49">
+                        <div class="serveces-center">
+                            <figure class="">
+                                <img src="./../../assets/img/crm.jpg" alt="">
+                            </figure>
+                            <div class="weOffer-body">
+                                <h4 class="text-bold font-accent">CRM</h4>
+                                <p>If you're in logistics, expect to work with 3-D graphics.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardWrap m-Top20" fxFlex="31.5" fxFlex.lt-md="49">
+                        <div class="serveces-center">
+                            <figure class="">
+                                <img src="./../../assets/img/bigData.jpg" alt="">
+                            </figure>
+                            <div class="weOffer-body">
+                                <h4 class="text-bold font-accent">Big Data</h4>
+                                <p>Our experts work day and night to solve all your cargo-related problems.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardWrap m-Top20" fxFlex="31.5" fxFlex.lt-md="49">
+                        <div class="serveces-center">
+                            <figure class="">
+                                <img src="./../../assets/img/uxDesign.jpg" alt="">
+                            </figure>
+                            <div class="weOffer-body">
+                                <h4 class="text-bold font-accent">UX Design</h4>
+                                <p>Our document maintenance methodology is dependable.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <section class="whatWeOffer c-white fotterBox bg-primary p-Top70 p-Bottom50">
+        <div class="wrap footer">
+        <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="50px" fxLayout.xs="column">
+            <div class="" fxFlex="15" fxFlex.lt-md="100">
+                <img src="./../../assets/img/logo.png">
+            </div>
+            <div class="" fxFlex="25" fxFlex.lt-md="42">
+                <h5>Recent Posts</h5>
+                <div class="post">
+                    <p>You have to transport something – we tell you how!</p>
+                    <div class="d-flex">
+                        <div class="date m-Right20"><mat-icon>date_range</mat-icon>  March 10, 2018, 12:35</div>
+                        <div class="admin"><mat-icon>account_circle</mat-icon>Admin</div>
+                    </div>
+                </div>
+                <div class="post m-Top10">
+                    <p>You have to transport something – we tell you how!</p>
+                    <div class="d-flex">
+                        <div class="date m-Right20"><mat-icon>date_range</mat-icon>  March 10, 2018, 12:35</div>
+                        <div class="admin"><mat-icon>account_circle</mat-icon>Admin</div>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="" fxFlex="35" fxFlex.lt-md="42">
+                <h5>Contect</h5>
+                <h6>Corporate Headquarters</h6>
+                <p> 300 W Adams Street, Suite 319, <br>Chicago, IL 60606, USA</p>
+                <h6 class="m-Top30">India Office</h6>
+                <p> Unitech Cyber Park<br>
+                    Tower- B, 1506<br>
+                    Sec-39, Gurgaon 122002</p>
+            </div>
+            <div class="social" fxFlex="25" fxFlex.lt-md="70">
+                <h5>Social</h5>
+                <div class="d-flex">
+                    <a href="javascript:void(0)" class="bg-accent m-Right10"><i class="fab fa-facebook-square"></i></a>
+                    <a href="javascript:void(0)" class="bg-accent m-Right10"><i class="fab fa-twitter-square"></i></a>
+                    <a href="javascript:void(0)" class="bg-accent m-Right10"><i class="fab fa-instagram-square"></i></a>
+                    <a href="javascript:void(0)" class="bg-accent"><i class="fas fa-rss-square"></i></a>
+                </div>
+                <div class="w-100 m-Top30">
+                    <img src="./../../assets/img/footer-card.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+</div>

@@ -1,0 +1,49 @@
+<div class="admin">
+    <!-- <h1 class="title">Admin</h1> -->
+    
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="21px" fxLayoutGap.lt-md="6px" fxLayout.xs="column" class="m-h600">
+            <div class="cardWrap m-Bottom20 m-Top50" fxFlex="48" fxFlex.lt-md="100">
+               <div  class="status-box bg-white p20 admin-nav">
+                <div [routerLink]="['/home/Admin/proj-setp']"><mat-icon class="accent">gradient</mat-icon> Project Setup</div>
+                <ul>
+                    <li [routerLink]="['/home/Admin/proj-setp']">Project Setup</li>
+                    <li [routerLink]="['/home/Admin/proj-setp/client-project']">Project Client</li>
+                    <!-- <li [routerLink]="['/home/admin/proj-setp/project-add-edit']">Project Add/Edit</li> -->
+                </ul>
+               </div>
+            </div>
+            <div class="cardWrap m-Bottom20 m-Top50" fxFlex="48" fxFlex.lt-md="100">
+                <div class="status-box bg-white p20 admin-nav">
+                    <div [routerLink]="['/home/Admin/empList']" [state]="{access:1}"> <mat-icon class="accent">supervised_user_circle</mat-icon> Employee Manage</div>
+                     <ul>
+                        <li [routerLink]="['/home/Admin/empList']">Employee List</li>
+                        <li [routerLink]="['/home/leave']" [state]="{access:1}"> Leave manage </li> 
+                
+                    </ul>
+                </div>
+            </div>
+            <div class="cardWrap m-Bottom20 m-Top50" fxFlex="48" fxFlex.lt-md="100">
+                <div class="status-box bg-white p20 admin-nav" >
+                  <div [routerLink]="['/home/holiday']" [state]="{access:1}">  <mat-icon class="accent">domain</mat-icon> Company Profile Setup </div>
+                    <ul>
+                        <li [routerLink]="['/home/holiday']" [state]="{access:1}">Holiday setup</li>
+                        <li [routerLink]="['/home/admin']">Setup 2</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cardWrap m-Bottom20 m-Top50" fxFlex="48" fxFlex.lt-md="100">
+                <div class="status-box bg-white p20 admin-nav">
+                    <div> <mat-icon class="accent">security</mat-icon> Security Setup</div>
+                    <ul>
+                        <li [routerLink]="['/home/Admin/security/group-emp']">User Security</li>
+                        <li [routerLink]="['/home/Admin/security/group']">Group Security</li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+        </div>
+    
+</div>
+<!-- <router-outlet></router-outlet> -->
+

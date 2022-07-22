@@ -1,0 +1,76 @@
+<div class="project-setup-page">
+    <h2>User</h2>
+    <app-ng-dynamic-breadcrumb [bgColor]="'rgb(34 47 60 / 10%)'" [fontSize]="'13px'" [fontColor]="'#0275d8'"
+        [lastLinkColor]="'#000'" [symbol]="' / '"></app-ng-dynamic-breadcrumb>
+    <div class="bg-white p20 h-vh76">
+        <div class="border-grid m-Top10">
+          <h2>Group Emp Details</h2>
+          <ul class="m-Top10">
+            <li>Name : <span>{{empDetails.name}}</span></li>
+            <li>Emp Id : <span>{{empDetails.empId}}</span></li>
+            <li>Email Id : <span>{{empDetails.emailId}}</span></li>
+            <li>joining Date: <span>{{empDetails.joiningDate | date: 'dd-MM-yyyy'}}</span></li>
+            <li>phone No. : <span>{{empDetails.phoneNumber}}</span></li>
+          </ul>
+        </div>
+      
+        <div class="m-Top30 d-flex w-100">
+            <div class="example-container m-Right30 w-100">
+                <h2>Available Groups</h2>
+                <div class="over-scroll-table">
+                    <table mat-table [dataSource]="availableGroupsRow" class="mat-elevation-z8 w-100">
+                      <ng-container matColumnDef="groupName">
+                        <th mat-header-cell *matHeaderCellDef> Group Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.groupName}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="shortDescription">
+                        <th mat-header-cell *matHeaderCellDef> Group Discription  </th>
+                        <td mat-cell *matCellDef="let element"> {{element.shortDescription}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="assignBtn">
+                        <th mat-header-cell *matHeaderCellDef> </th>
+                        <td mat-cell *matCellDef="let element; let j = index;"> 
+                            <button mat-flat-button color="accent" (click)="addRow(element, j)" class="c-white assignBtn" >
+                                <mat-icon>redo</mat-icon>
+                            </button>
+                        </td>
+                      </ng-container>
+                      <tr mat-header-row *matHeaderRowDef="availableGroupsColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: availableGroupsColumns;"></tr>
+                    </table>
+                  </div>
+            </div>
+            <div class="example-container w-100">
+                <div class="d-flex justify-between">
+                <h2>Assigned Groups</h2>
+                <div class="m-Bottom10 align-right">
+                    <button mat-flat-button color="accent" (click)="getUserGroupSave()" class="c-white">Save</button>
+                    <!-- <button mat-flat-button color="warn">Cancel</button> -->
+                  </div>
+                </div>
+                  <div class="over-scroll-table">
+                    <table mat-table [dataSource]="assignedGroupsRow" class="mat-elevation-z8 w-100">
+                        <ng-container matColumnDef="deleteBtn">
+                            <th mat-header-cell *matHeaderCellDef width ="2%"> </th>
+                            <td mat-cell *matCellDef="let element; let j = index;"> 
+                                <button mat-flat-button color="warn" (click)="removeData(j, element)" class="c-white assignBtn" >
+                                    <mat-icon>remove</mat-icon>
+                                </button>    
+                            </td>
+                          </ng-container>
+                          <ng-container matColumnDef="groupName">
+                            <th mat-header-cell *matHeaderCellDef> Group Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.groupName}} </td>
+                          </ng-container>
+                          <ng-container matColumnDef="shortDescription">
+                            <th mat-header-cell *matHeaderCellDef> Group Discription  </th>
+                            <td mat-cell *matCellDef="let element"> {{element.shortDescription}} </td>
+                          </ng-container>
+                      <tr mat-header-row *matHeaderRowDef="assignedGroupsColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: assignedGroupsColumns;"></tr>
+                    </table>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

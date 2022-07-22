@@ -1,0 +1,76 @@
+<h1>Project Details</h1>
+<app-ng-dynamic-breadcrumb [bgColor]="'rgb(34 47 60 / 10%)'" [fontSize]="'13px'" [fontColor]="'#0275d8'"
+  [lastLinkColor]="'#000'" [symbol]="' / '"></app-ng-dynamic-breadcrumb>
+<div class="bg-white p20">
+  <div class="project-details" *ngFor="let projDetails of prjectDetails">
+    <h2>Project Owner: <span class="accent">{{projDetails.ownerShips}}</span></h2>
+    <h2>Project Created On: <span class="accent">{{projDetails.createdOn | date: 'dd-MM-yyyy'}}</span></h2>
+    <!-- <h2><span class="accent">5 Task</span></h2> -->
+    <h2>Total hours billed to this project: <span class="accent">{{projDetails.totalBudgetHours ?
+        projDetails.totalBudgetHours : '00:00'}}</span> Hours</h2>
+    <div class="task-details m-Top25">
+      <div *ngFor="let projTaskList of projDetails.projectTaskList">
+        <div class="budget-box d-flex m-Top10 justify-between">
+          <div class="budget-title">
+            <h2>{{projTaskList.task}}</h2>
+            <span>{{projTaskList.employeeCount}} People have entered time to this task</span>
+          </div>
+          <div class="budget-stm">
+            <h2>Budget</h2>
+            <span>{{projTaskList.budgetHours}}</span>
+          </div>
+          <div class="budget-actual">
+            <h2>Actual</h2>
+            <span>{{projTaskList.actualBudget }}</span>
+          </div>
+        </div>
+        <div class="over-scroll-table">
+          <table mat-table [dataSource]="projTaskList.getEmpSubmittedHours" class="mat-elevation-z8 w-100">
+            <ng-container matColumnDef="emp">
+              <th mat-header-cell *matHeaderCellDef> People who have entered time </th>
+              <td mat-cell *matCellDef="let element"> <a class="userNameLink"
+                  (click)="empDetailsTime(element.userId, element.taskId)">{{element.userName}} </a></td>
+            </ng-container>
+            <ng-container matColumnDef="hours">
+              <th mat-header-cell *matHeaderCellDef> Hours </th>
+              <td mat-cell *matCellDef="let element"> {{element.hours}} </td>
+            </ng-container>
+            <ng-container matColumnDef="total">
+              <th mat-header-cell *matHeaderCellDef> Total </th>
+              <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+            </ng-container>
+            <ng-container matColumnDef="lastenteredtime">
+              <th mat-header-cell *matHeaderCellDef> Last entered time on </th>
+              <td mat-cell *matCellDef="let element"> {{element.lastTimeEntered | date: 'dd-MM-yyyy'}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #empEnteredDetails>
+  <h1 mat-dialog-title>Employee Entered Details</h1>
+  <div mat-dialog-content>
+    <div class="over-scroll-table">
+      <table mat-table [dataSource]="empTableList" class="mat-elevation-z8 w-100">
+        <ng-container matColumnDef="taskDate">
+          <th mat-header-cell *matHeaderCellDef width="40%"> Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.taskDate | date: 'EEEE, MMMM d, y'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="billableHours">
+          <th mat-header-cell *matHeaderCellDef width="20%"> Hours </th>
+          <td mat-cell *matCellDef="let element"> {{element.billableHours}} </td>
+        </ng-container>
+        <ng-container matColumnDef="billableHoursNote">
+          <th mat-header-cell *matHeaderCellDef> Entered Task </th>
+          <td mat-cell class="wrap-inherit" *matCellDef="let element"> {{element.billableHoursNote}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="empDetailsColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: empDetailsColumns;"></tr>
+      </table>
+    </div>
+  </div>
+</ng-template>

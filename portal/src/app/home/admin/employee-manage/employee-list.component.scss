@@ -1,0 +1,40 @@
+.button{
+    margin-bottom: 30px;
+}
+.example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    width: 490px;
+  }  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .close.mat-button {
+    position: absolute;
+    top: 0;
+    right: 0  ;
+    padding: 5px;
+    line-height: 14px;
+    min-width: auto;
+  }
+  .print-btn {
+    float: right;
+    margin-left: 10px;
+    cursor: pointer;
+    &:hover {
+        .mat-button-focus-overlay {
+            background: transparent !important;
+        }
+    }
+}
+[hidden] {
+  display: none !important;
+}

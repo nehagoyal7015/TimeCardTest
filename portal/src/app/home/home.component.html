@@ -1,0 +1,39 @@
+<mat-drawer-container class="example-container" autosize [hasBackdrop]="bgPopup" [ngClass]="{'mobileView': this.opened}">
+    <mat-drawer #drawer class="example-sidenav" mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+    (closed)="events.push('close!')" [ngClass]="{'active': showFiller, 'inActive': !showFiller}">
+      <a class="bars-btn" (click)="showFiller = !showFiller" [ngClass]="{'active': showFiller, 'inActive': !showFiller}">
+        <mat-icon>menu</mat-icon>
+      </a>
+      <div class="user-Login" *ngIf="!showFiller">
+        <i class="fas fa-user-circle f-size20"></i>
+        <a  style="text-decoration: none;" routerLink="myProfile"><p class="f-size14 m-Top10" >{{user.userName}}</p></a>
+      </div>
+      <ul class="menu">
+        <li [routerLink]="['/home']"> <i class="fas fa-chart-line"></i> <a href="javascript:void(0)" *ngIf="!showFiller">Dashboard</a></li>
+        <li [routerLink]="['/home/leave']" [state]="{access:0}"> <i class="fas fa-toilet-paper-slash"></i> <a href="/home/leave" *ngIf="!showFiller">Leave</a></li>
+        <li [routerLink]="['/home/holiday']" [state]="{access:0}"> <i class="fas fa-gift"></i> <a href="/home/holiday" *ngIf="!showFiller">Holiday</a></li>
+        <li [routerLink]="['/home/document']"> <i class="fas fa-file"></i> <a href="javascript:void(0)" *ngIf="!showFiller">Documents</a></li>
+        <li [routerLink]="['/home/report']"> <i class="fas fa-hotel"></i> <a href="javascript:void(0)" *ngIf="!showFiller">Report</a></li>
+        <li [routerLink]="['/home/Admin']"> <i class="fas fa-user"></i> <a href="javascript:void(0)" *ngIf="!showFiller">Admin</a></li> 
+        <li [routerLink]="['/home/myProfile']"> <i class="fas fa-id-card"></i> <a href="javascript:void(0)" *ngIf="!showFiller">My Profile</a></li>
+        <li> <i class="fas fa-sign-out-alt"></i> <a (click)="signOut()" href="javascript:void(0)" *ngIf="!showFiller">Logout</a></li> 
+      </ul>
+      <div class="align-center footer-logo" *ngIf="!showFiller">
+        <img src="./../../assets/img/logo.png">
+      </div>
+    </mat-drawer>
+    <div class="example-sidenav-content">
+      <div class="w-420 bg-primary attr-none-d d-flex flex-center justify-between p10">
+      <a href="javascript:void(0)" (click)="drawer.toggle()">
+        <mat-icon class="c-white" (click)="mobileMenu = !mobileMenu">menu</mat-icon>
+      </a>
+      <div class="d-flex"> 
+        <i class="fas fa-user-circle f-size20 m-Right5 c-white"></i>
+        <div class="f-size14 c-white t-uppercase" >{{user.userName}}</div></div>
+
+    </div>
+    <div class="wrap m-Top10">
+      <router-outlet></router-outlet>
+    </div>
+    </div>
+  </mat-drawer-container>

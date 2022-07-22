@@ -1,0 +1,87 @@
+.profile-page {
+    .edit-profile {
+        position: absolute;
+        left:-6px;
+        top: -8px;
+        cursor: pointer;
+        font-size: 18px;
+        color: #8c8a8a;
+        transform: rotate(265deg);
+    }
+    h5 {
+        font-size: 17px;
+        font-weight: 500;
+    }
+    .card-body {
+        a {
+            padding: 5px 15px;
+            border: 1px solid #dedede;
+            display: inline-block;
+            border-radius: 3px;
+            margin: 5px 10px 5px 0;
+            text-decoration: none;
+            color: #000;
+        }
+    }
+    .contact-body {
+        .media {
+            width: 100%;
+            small {
+                color: #888888;
+            }
+            .media-icon {
+                background-color: #dedede;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                padding: 5px;
+                border-radius: 50%;
+                margin-right: 10px;
+                margin-bottom: 20px;
+            }
+        }
+        
+    }
+    .user-Login {
+        p{
+            color: #000;
+            margin-bottom: 0;
+        }
+        .user-profile {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 5px solid #222f3c;
+        }
+        h6 {
+            font-size: 13px;
+            color: #7e7b7b;
+        }
+    }
+    .profile-details {
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1px;
+            border: 1px solid #dedede;
+            li {
+                display: flex;
+                width: 100%;
+                border-bottom: 1px solid #dedede;
+                padding: 10px 15px;
+                margin-bottom: -1px;
+                margin-right: -1px;
+                font-size: 13px;
+                line-height: 25px;
+                span {
+                    margin-right: 10px;
+                    width: 18%;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

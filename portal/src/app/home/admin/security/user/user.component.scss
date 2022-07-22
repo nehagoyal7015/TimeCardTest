@@ -1,0 +1,19 @@
+.assignBtn {
+  padding: 2px;
+  margin: 2px !important;
+  min-width: 34px;
+  line-height: 22px;
+  float: right;
+  cursor: pointer;
+}
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  li {
+    width: 33%;
+    margin-bottom: 10px;
+    span {
+      font-weight: 600;
+    }
+  }
+}

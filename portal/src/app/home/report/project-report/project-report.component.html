@@ -1,0 +1,45 @@
+<div class="project-setup-page">
+    <h2>Project Report</h2>
+    <app-ng-dynamic-breadcrumb [bgColor]="'rgb(34 47 60 / 10%)'" [fontSize]="'13px'" [fontColor]="'#0275d8'"
+        [lastLinkColor]="'#000'" [symbol]="' / '"></app-ng-dynamic-breadcrumb>
+    <div class="p20 bg-white m-Top10">
+        <button mat-flat-button color="primary" class="print-btn"  (click)="captureScreen()">Print</button>
+        <div class="over-scroll-table m-Top10">
+            
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100" id="projectReport">
+                <!-- Client Name Column -->
+                <ng-container matColumnDef="clientName">
+                    <th mat-header-cell *matHeaderCellDef> Client Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.clientName}} </td>
+                </ng-container>
+                <!-- Project Name Column -->
+                <ng-container matColumnDef="projectName">
+                    <th mat-header-cell *matHeaderCellDef> Project Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.projectName}} </td>
+                </ng-container>
+                <!-- Assign To Column -->
+                <ng-container matColumnDef="asignTo">
+                    <th mat-header-cell *matHeaderCellDef> Assign To </th>
+                    <td mat-cell *matCellDef="let element"> {{element.asignTo}} </td>
+                </ng-container>
+                <!-- Manager Column -->
+                <ng-container matColumnDef="managar">
+                    <th mat-header-cell *matHeaderCellDef> Manager </th>
+                    <td mat-cell *matCellDef="let element"> {{element.managar}} </td>
+                </ng-container>
+                <!-- Total Hours Spent  Column -->
+                <ng-container matColumnDef="totalHourSpent">
+                    <th mat-header-cell *matHeaderCellDef> total Hours Spent </th>
+                    <td mat-cell *matCellDef="let element"> {{element.totalHourSpent}} </td>
+                </ng-container>
+                <!-- Current Month Spent  Column -->
+                <ng-container matColumnDef="currentMonthSpent">
+                    <th mat-header-cell *matHeaderCellDef> Current Month Spent </th>
+                    <td mat-cell *matCellDef="let element"> {{element.currentMonthSpent}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>

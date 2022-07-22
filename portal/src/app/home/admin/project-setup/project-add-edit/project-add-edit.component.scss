@@ -1,0 +1,133 @@
+.empListBox {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px 0 10px;
+    li{
+        line-height: 25px;
+        width: 25%;
+        margin-bottom: 10px;
+    }
+}
+.border-box {
+    padding: 5px 25px;
+    border: 1px solid #dedede;
+    position: relative;
+    padding-top: 25px;
+    label {
+        background: #fff;
+        padding: 1px 5px;
+        border: 1px solid #dedede;
+        position: absolute;
+        top: -14px;
+        left: 15px;
+    }
+}
+ .inputTaskBox .mat-form-field-wrapper { padding-bottom: 10px;}
+// .example-container {
+//   width: 400px;
+//   height: 200px;
+//   margin: 12px;
+//   border: 1px solid #555;
+// }
+
+// mat-drawer-content {
+//   padding: 12px;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: flex-start;
+// }
+
+.customForm {
+  .mat-form-field-appearance-fill {
+    .mat-form-field-infix { 
+      padding-bottom: 5px !important;
+    }
+    &.mat-focused .mat-form-field-wrapper .mat-form-field-flex { 
+      border: 2px solid rgb(38 198 218 / 31%);
+      border-radius: 0;
+    }
+    .mat-form-field-wrapper .mat-form-field-flex { 
+      border: 2px solid #dedede; 
+      border-radius: 0;
+      background-color: transparent;
+    }
+    .mat-form-field-underline::before {height: 0px;}
+  }
+  .mat-form-field-underline { display: none;}
+  .mat-form-field-wrapper { padding-bottom: .5em;}
+  .mat-form-field-ripple {border: 2px solid #26c6da;}
+  .mat-form-field-flex { padding: 0 10px !important;}
+}
+
+.inputTaskBox {
+  width: 60%;
+  margin-top: 7px;
+  .mat-form-field-flex {
+    border: 1px solid #d3d0d0;
+    background-color: transparent;
+  }
+  .mat-form-field-underline { display: none;}
+  .mat-form-field-label-wrapper{
+      overflow: visible;
+      .mat-form-field-label {
+        position: relative;
+        top: -20px;
+        background: #fff;
+        padding: 1px 5px;
+        border: 1px solid #dedede;
+        display: initial !important;
+    }
+  }
+  .mat-select-value {
+    position: relative;
+    top: -3px;
+  }
+  .mat-select-arrow-wrapper {
+    transform: translateY(-30%) !important;
+    
+  }
+  .mat-form-field-flex { padding: 0 10px !important;}
+}
+
+.taskInput{
+  width: 49%;
+}
+
+.td, th {
+  border: none;
+  text-align: left;
+  size: fixed;
+  margin-left: 2px;
+  font-size: medium ;
+}
+
+.inputField{
+  border: 1px solid #dddddd;
+  font-size: small;
+ 
+}
+
+.mat-icon {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.taskAdd{
+  margin-bottom: 20px;
+}
+.addbutton{
+  margin: 10px;
+  text-align: right;
+  cursor: pointer;
+}
+.example-section {
+  margin: 12px 0;
+}
+
+.example-margin {
+  margin: 0 12px;
+  font-size: medium;
+  padding-left: 10px;
+}
